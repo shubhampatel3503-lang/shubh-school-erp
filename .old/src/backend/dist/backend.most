@@ -1,0 +1,1471 @@
+// Version: 1.0.0
+type AcademicSession__475055566 =
+  {
+    createdAt : Int;
+    endDate : Text;
+    id : Text;
+    isActive : Bool;
+    isArchived : Bool;
+    sessionName : Text;
+    startDate : Text
+  };
+type ActivityEntry__349492796 =
+  {actionType : Text; description : Text; timestamp : Int; userName : Text};
+type AlumniRecord__260726537 =
+  {
+    className : Text;
+    currentCity : ?Text;
+    currentOccupation : ?Text;
+    email : ?Text;
+    fullName : Text;
+    graduationYear : Text;
+    id : Text;
+    mobile : ?Text;
+    photoUrl : ?Text
+  };
+type AppUser__460510275 =
+  {
+    id : Nat;
+    isActive : Bool;
+    passwordHash : Text;
+    role : UserRole__549269184;
+    username : Text
+  };
+type AttendanceDevice__355287652 = {#ESSLBiometric; #Face; #QR; #RFID};
+type AttendanceRecord__852829031 =
+  {
+    date : Text;
+    id : Text;
+    markedBy : Text;
+    remarks : ?Text;
+    status : AttendanceStatus__244828072;
+    studentId : Text
+  };
+type AttendanceSession__942265418 =
+  {
+    classLevel : ClassLevel__663114624;
+    date : Text;
+    id : Text;
+    markedAt : Int;
+    markedBy : Text;
+    sectionId : Text
+  };
+type AttendanceStatus__244828072 = {#Absent; #Late; #Leave; #Present};
+type AuditLog__6242273 =
+  {
+    action : Text;
+    details : Text;
+    id : Text;
+    moduleName : Text;
+    timestamp : Int;
+    userId : Text
+  };
+type BackupSchedule__293906320 = {#daily; #monthly; #never; #weekly};
+type BookIssueStatus__76396828 = {#Issued; #Overdue; #Returned};
+type BookIssue__951742585 =
+  {
+    bookId : Text;
+    dueDate : Text;
+    fine : Nat;
+    id : Text;
+    issueDate : Text;
+    returnDate : ?Text;
+    status : BookIssueStatus__76396828;
+    studentId : Text
+  };
+type Book__232940326 =
+  {
+    author : Text;
+    availableCopies : Nat;
+    category : Text;
+    id : Text;
+    isbn : Text;
+    photoUrl : ?Text;
+    publisher : ?Text;
+    shelfLocation : ?Text;
+    title : Text;
+    totalCopies : Nat
+  };
+type BusLocation__241812035 =
+  {
+    busId : Text;
+    driverName : Text;
+    isActive : Bool;
+    latitude : Float;
+    longitude : Float;
+    routeId : Text;
+    routeName : Text;
+    updatedAt : Int
+  };
+type CertificateTemplate__247560661 =
+  {
+    createdBy : Text;
+    elementsJson : Text;
+    id : Text;
+    isDefault : Bool;
+    name : Text;
+    templateType : Text;
+    thumbnail : Text;
+    updatedAt : Int
+  };
+type CertificateTemplate__780740921 =
+  {
+    createdBy : Text;
+    id : Text;
+    isDefault : Bool;
+    layoutJson : Text;
+    name : Text;
+    templateType : Text;
+    updatedAt : Int
+  };
+type ChatMessage__1037536196 =
+  {
+    attachmentUrl : ?Text;
+    content : Text;
+    id : Text;
+    isDeleted : Bool;
+    roomId : Text;
+    senderId : Text;
+    sentAt : Int
+  };
+type ChatRoomType__1020189572 = {#ClassGroup; #Direct; #General; #RouteGroup};
+type ChatRoom__657595135 =
+  {
+    createdAt : Int;
+    createdBy : Text;
+    id : Text;
+    members : [Text];
+    name : Text;
+    roomType : ChatRoomType__1020189572
+  };
+type ClassLevel__193756788 =
+  {
+    #Class1;
+    #Class10;
+    #Class11;
+    #Class12;
+    #Class2;
+    #Class3;
+    #Class4;
+    #Class5;
+    #Class6;
+    #Class7;
+    #Class8;
+    #Class9;
+    #LKG;
+    #PlayWay;
+    #UKG
+  };
+type ClassLevel__394777707 =
+  {
+    #Class1;
+    #Class10;
+    #Class11;
+    #Class12;
+    #Class2;
+    #Class3;
+    #Class4;
+    #Class5;
+    #Class6;
+    #Class7;
+    #Class8;
+    #Class9;
+    #LKG;
+    #PlayWay;
+    #UKG
+  };
+type ClassLevel__663114624 =
+  {
+    #Class1;
+    #Class10;
+    #Class11;
+    #Class12;
+    #Class2;
+    #Class3;
+    #Class4;
+    #Class5;
+    #Class6;
+    #Class7;
+    #Class8;
+    #Class9;
+    #LKG;
+    #PlayWay;
+    #UKG
+  };
+type ClassLevel__814329443 =
+  {
+    #Class1;
+    #Class10;
+    #Class11;
+    #Class12;
+    #Class2;
+    #Class3;
+    #Class4;
+    #Class5;
+    #Class6;
+    #Class7;
+    #Class8;
+    #Class9;
+    #LKG;
+    #PlayWay;
+    #UKG
+  };
+type ClassLinks__249016704 =
+  {
+    broadcastUrl : Text;
+    cctvUrl : Text;
+    classLevel : Text;
+    sectionName : Text
+  };
+type ClassTimetableEntry__962933540 =
+  {
+    classLevel : ClassLevel__394777707;
+    dayOfWeek : Text;
+    endTime : Text;
+    periodNumber : Nat;
+    sectionName : Text;
+    startTime : Text;
+    subjectName : Text;
+    teacherName : Text;
+    teacherStaffId : Text
+  };
+type ClassTimetable__286075045 =
+  {
+    createdAt : Int;
+    entries : [ClassTimetableEntry__962933540];
+    id : Text;
+    name : Text;
+    periodConfigs : ?[PeriodConfig__565502116];
+    sessionId : Text;
+    updatedAt : Int
+  };
+type CustomLink__290986566 =
+  {isExternal : Bool; linkLabel : Text; order : Nat; url : Text};
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type DeviceAttendanceRecord__583086083 =
+  {
+    classLevel : ClassLevel__193756788;
+    date : Text;
+    deviceType : AttendanceDevice__355287652;
+    id : Nat;
+    inTime : ?Text;
+    outTime : ?Text;
+    section : Text;
+    status : Text;
+    studentId : Nat;
+    studentName : Text
+  };
+type DeviceConfig__778080928 =
+  {
+    deviceId : ?Text;
+    deviceType : Text;
+    ipAddress : ?Text;
+    port : ?Nat;
+    updatedAt : Int;
+    usbPort : ?Text
+  };
+type DirectMessage__994066101 =
+  {
+    channel : Text;
+    deliveryStatus : Text;
+    fromUsername : Text;
+    id : Text;
+    message : Text;
+    sentAt : Text;
+    templateKey : ?Text;
+    toClassLevel : ?Text;
+    toSection : ?Text;
+    toStudentId : ?Text
+  };
+type EnhancedPayrollRecord__509625334 =
+  {
+    absentDays : Float;
+    advancePaid : Float;
+    attendanceDays : Float;
+    deductibleDays : Float;
+    deductions : Float;
+    generatedAt : Int;
+    grossSalary : Float;
+    id : Text;
+    incentives : Float;
+    loanDeduction : Float;
+    month : Text;
+    netSalary : Float;
+    paymentStatus : Text;
+    payouts : [StaffPayout__198705590];
+    payslipNotes : Text;
+    staffId : Text;
+    workingDays : Float
+  };
+type ExamCalendarEntry__278599610 =
+  {
+    className : Text;
+    createdAt : Int;
+    date : Text;
+    examName : Text;
+    id : Text
+  };
+type ExamConfig__593032209 =
+  {
+    classId : Text;
+    createdAt : Int;
+    examName : Text;
+    id : Text;
+    includeInCombined : Bool;
+    sessionId : Text;
+    subjectConfigs : [ExamSubjectConfig__270018088];
+    weightage : Float
+  };
+type ExamResultV2__884843914 =
+  {
+    classId : Text;
+    examConfigId : Text;
+    examName : Text;
+    id : Text;
+    overallGrade : Text;
+    overallPassed : Bool;
+    percentage : Float;
+    rank : ?Nat;
+    remarks : ?Text;
+    savedAt : Int;
+    sessionId : Text;
+    studentId : Text;
+    subjectMarks : [SubjectMarkEntry__401516720];
+    totalMax : Float;
+    totalObtained : Float
+  };
+type ExamResult__14229232 =
+  {
+    examTimetableId : Text;
+    grade : Text;
+    id : Text;
+    percentage : Float;
+    rank : ?Nat;
+    remarks : ?Text;
+    scores : [(Text, Nat)];
+    studentId : Text;
+    totalMarks : Nat
+  };
+type ExamScheduleEntry__560531272 =
+  {
+    date : Text;
+    endTime : Text;
+    invigilatorId : ?Text;
+    room : ?Text;
+    startTime : Text;
+    subjectId : Text
+  };
+type ExamSubjectConfig__270018088 =
+  {
+    maxMarks : Float;
+    passingMarks : Float;
+    subjectId : Text;
+    subjectName : Text
+  };
+type ExamTimetable__589874324 =
+  {
+    classLevel : ClassLevel__663114624;
+    examName : Text;
+    id : Text;
+    schedule : [ExamScheduleEntry__560531272];
+    session : Text
+  };
+type ExpHeadType__977299067 = {#Expense; #Income};
+type ExpenseEntry__590098545 =
+  {
+    amount : Float;
+    createdAt : Text;
+    createdBy : Text;
+    date : Text;
+    description : Text;
+    headId : Text;
+    id : Text
+  };
+type ExpenseEntry__804719860 =
+  {
+    amount : Nat;
+    createdAt : Int;
+    createdBy : Text;
+    date : Text;
+    description : Text;
+    headId : Text;
+    id : Text;
+    receipt : ?Text
+  };
+type ExpenseHead__660566883 =
+  {
+    description : ?Text;
+    headType : ExpHeadType__977299067;
+    id : Text;
+    name : Text
+  };
+type ExpenseHead__972477267 =
+  {color : Text; createdAt : Text; id : Text; name : Text; type_ : Text};
+type FaceEnrollmentRecord__9262943 =
+  {
+    admNo : Text;
+    descriptorJson : Text;
+    enrolledBy : Text;
+    faceEnrolled : Bool;
+    faceEnrollmentDate : ?Text;
+    photoUrl : ?Text;
+    studentId : Text;
+    updatedAt : Int
+  };
+type FeeAuditLog__240592391 =
+  {
+    action : Text;
+    adminId : Text;
+    adminName : Text;
+    fieldChanged : Text;
+    id : Text;
+    newValue : Text;
+    oldValue : Text;
+    paymentId : Text;
+    studentId : Text;
+    timestamp : Int
+  };
+type FeeHeading__241819758 =
+  {
+    applicableMonths : [Text];
+    description : ?Text;
+    id : Text;
+    isActive : Bool;
+    name : Text
+  };
+type FeePaymentItem__145929133 =
+  {amount : Nat; headingId : Text; month : Text};
+type FeePayment__280713833 =
+  {
+    balance : Nat;
+    balanceCarriedForward : Float;
+    createdAt : Int;
+    createdBy : Text;
+    discountTotal : Nat;
+    id : Text;
+    isDeleted : Bool;
+    items : [FeePaymentItem__145929133];
+    lateFees : Nat;
+    otherFee : ?OtherFee__349392859;
+    paymentDate : Text;
+    paymentMode : Text;
+    receiptNo : Text;
+    remarks : ?Text;
+    sessionId : Text;
+    studentId : Text;
+    totalAmount : Nat;
+    totalDue : Nat;
+    upiRef : ?Text
+  };
+type FeePlan__195043195 =
+  {
+    classLevel : ClassLevel__663114624;
+    id : Text;
+    monthlyAmounts : [(Text, Nat)];
+    sectionId : ?Text;
+    session : Text
+  };
+type Holiday__491596039 =
+  {
+    createdAt : Int;
+    date : Text;
+    description : Text;
+    id : Text;
+    isRecurring : Bool;
+    name : Text
+  };
+type HomeworkEntry__713044876 =
+  {
+    attachmentUrl : ?Text;
+    classLevel : ClassLevel__663114624;
+    createdAt : Int;
+    createdBy : Text;
+    description : Text;
+    dueDate : Text;
+    id : Text;
+    sectionId : ?Text;
+    subjectId : Text;
+    title : Text
+  };
+type HomeworkSubmission__419194933 =
+  {
+    attachmentUrl : ?Text;
+    content : ?Text;
+    feedback : ?Text;
+    grade : ?Text;
+    homeworkId : Text;
+    id : Text;
+    studentId : Text;
+    submittedAt : Int
+  };
+type IndexPageConfig__1039600891 =
+  {
+    ctaButtonColor : Text;
+    ctaButtonText : Text;
+    customLinks : [CustomLink__290986566];
+    heroBgColor : Text;
+    heroImageFileId : Text;
+    heroSubtitle : Text;
+    heroTextColor : Text;
+    heroTitle : Text;
+    isPublished : Bool;
+    sections : [IndexPageSection__998966226]
+  };
+type IndexPageSection__998966226 =
+  {
+    bgColor : Text;
+    description : Text;
+    id : Text;
+    imageFileId : Text;
+    isVisible : Bool;
+    order : Nat;
+    sectionType : Text;
+    textColor : Text;
+    title : Text
+  };
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type InvTxType__714022219 = {#Adjustment; #Purchase; #Sale};
+type InventoryItem__576608082 =
+  {
+    category : Text;
+    currentStock : Nat;
+    id : Text;
+    minStock : Nat;
+    name : Text;
+    purchasePrice : Nat;
+    salePrice : Nat;
+    store : Text;
+    unit : Text
+  };
+type InventoryTransaction__436067919 =
+  {
+    balanceAmount : Nat;
+    buyerAdmNo : Text;
+    buyerName : Text;
+    createdBy : Text;
+    date : Text;
+    id : Text;
+    itemId : Text;
+    quantity : Int;
+    receivedAmount : Nat;
+    remarks : ?Text;
+    sellerName : Text;
+    totalAmount : Nat;
+    transactionType : InvTxType__714022219;
+    unitPrice : Nat
+  };
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type MCQQuestion__875173548 =
+  {
+    correctOption : Nat;
+    id : Text;
+    marks : Nat;
+    options : [Text];
+    question : Text
+  };
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type ModulePermission__906931652 =
+  {
+    canCreate : Bool;
+    canDelete : Bool;
+    canEdit : Bool;
+    canExport : Bool;
+    canView : Bool;
+    moduleId : Text
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type Node__585180226<T> =
+  {
+    var next : ?Node__585180226<T>;
+    var previous : ?Node__585180226<T>;
+    value : T
+  };
+type Notification__879889657 =
+  {
+    createdAt : Int;
+    createdBy : Text;
+    id : Text;
+    isRead : Bool;
+    message : Text;
+    notifType : Text;
+    targetClassLevel : ?ClassLevel__663114624;
+    targetRole : ?Text;
+    targetStudentId : ?Text;
+    title : Text
+  };
+type OldStudent__504866468 =
+  {
+    aadhaarNo : ?Text;
+    admNo : Text;
+    bloodGroup : ?Text;
+    busNo : ?Text;
+    category : ?Text;
+    classLevel : ClassLevel__663114624;
+    createdAt : Int;
+    currentAddress : Text;
+    dateOfBirth : Text;
+    fatherMobile : Text;
+    fatherName : Text;
+    fullName : Text;
+    gender : Text;
+    id : Text;
+    motherMobile : ?Text;
+    motherName : Text;
+    permanentAddress : Text;
+    photoUrl : ?Text;
+    religion : ?Text;
+    sectionId : Text;
+    session : Text;
+    status : StudentStatus__808804206;
+    transportPickupPointId : ?Text;
+    transportRouteId : ?Text
+  };
+type OnlineExamSubmission__519399747 =
+  {
+    answers : [(Text, Nat)];
+    examId : Text;
+    id : Text;
+    score : Nat;
+    studentId : Text;
+    submittedAt : Int;
+    timeTakenSecs : Nat;
+    totalMarks : Nat
+  };
+type OnlineExam__884984756 =
+  {
+    classLevel : ClassLevel__663114624;
+    createdBy : Text;
+    durationMinutes : Nat;
+    endTime : ?Text;
+    id : Text;
+    isActive : Bool;
+    questions : [MCQQuestion__875173548];
+    startTime : ?Text;
+    subjectId : ?Text;
+    title : Text
+  };
+type OtherFee__349392859 = {amount : Nat; description : Text};
+type PayrollMonthStatus__340988758 = {#paid; #partial; #unpaid};
+type PayrollRecord__478220478 =
+  {
+    additions : Nat;
+    basicSalary : Nat;
+    deductions : Nat;
+    generatedBy : Text;
+    id : Text;
+    month : Text;
+    netSalary : Nat;
+    paymentDate : ?Text;
+    presentDays : Nat;
+    staffId : Text;
+    status : PayrollStatus__804519848;
+    totalDays : Nat;
+    year : Text
+  };
+type PayrollStatus__804519848 = {#Paid; #Pending};
+type PeriodConfig__565502116 =
+  {
+    durationMinutes : Nat;
+    isInterval : Bool;
+    periodNumber : Nat;
+    startTime : Text
+  };
+type PickupPoint__743205916 =
+  {
+    id : Text;
+    monthlyFare : Float;
+    name : Text;
+    order : Nat;
+    routeId : Text;
+    timing : Text
+  };
+type QAPair__613556023 = {answer : Text; question : Text};
+type RolePermissions__469317481 =
+  {
+    modulePermissions : [ModulePermission__906931652];
+    role : UserRole__549269184
+  };
+type Section__958497798 =
+  {
+    classLevel : ClassLevel__663114624;
+    id : Text;
+    roomNo : ?Text;
+    sectionName : Text;
+    teacherId : ?Text
+  };
+type SmartExamTimetable__525512122 =
+  {
+    endDate : Text;
+    endTime : Text;
+    entries : [SmartTimetableEntry__610951407];
+    examName : Text;
+    id : Nat;
+    participatingClasses : [ClassLevel__814329443];
+    sessionId : Text;
+    startDate : Text;
+    startTime : Text;
+    status : Text
+  };
+type SmartTimetableEntry__610951407 =
+  {
+    classLevel : ClassLevel__814329443;
+    date : Text;
+    day : Text;
+    isLocked : Bool;
+    position : Nat;
+    subjectName : Text
+  };
+type StaffAttendanceRecord__256094700 =
+  {
+    date : Text;
+    deviceType : AttendanceDevice__355287652;
+    id : Nat;
+    inTime : ?Text;
+    month : Nat;
+    outTime : ?Text;
+    staffId : Text;
+    staffName : Text;
+    year : Nat
+  };
+type StaffIncentive__93244034 =
+  {
+    amount : Float;
+    approvedBy : Text;
+    createdAt : Int;
+    id : Text;
+    month : Text;
+    reason : Text;
+    staffId : Text;
+    year : Text
+  };
+type StaffLoan__313891978 =
+  {
+    createdAt : Int;
+    id : Text;
+    monthlyDeduction : Float;
+    notes : Text;
+    principalAmount : Float;
+    remainingAmount : Float;
+    staffId : Text;
+    startMonth : Text
+  };
+type StaffPayout__198705590 =
+  {
+    amount : Float;
+    createdAt : Int;
+    date : Text;
+    id : Text;
+    mode : Text;
+    notes : Text;
+    recordedBy : Text;
+    staffId : Text
+  };
+type StaffPayrollRecord__370182596 =
+  {
+    absentDays : Nat;
+    amountPaid : Nat;
+    baseSalary : Nat;
+    deductibleDays : Nat;
+    deduction : Nat;
+    freeLeave : Nat;
+    generatedAt : Int;
+    id : Text;
+    lockedAt : ?Int;
+    month : Nat;
+    netPay : Nat;
+    notes : Text;
+    presentDays : Nat;
+    staffId : Text;
+    status : PayrollMonthStatus__340988758;
+    workingDays : Nat;
+    year : Nat
+  };
+type StaffStatus__18262238 = {#Active; #Inactive};
+type Staff__880930854 =
+  {
+    aadhaarNo : ?Text;
+    address : Text;
+    bankAccount : ?Text;
+    createdAt : Int;
+    dateOfJoining : Text;
+    department : Text;
+    designation : Text;
+    email : ?Text;
+    employeeId : Text;
+    fullName : Text;
+    id : Text;
+    ifscCode : ?Text;
+    mobile : Text;
+    photoUrl : ?Text;
+    salary : Nat;
+    status : StaffStatus__18262238
+  };
+type StudentDiscount__742558432 =
+  {
+    amount : Nat;
+    createdAt : Int;
+    headingId : Text;
+    id : Text;
+    remark : ?Text;
+    studentId : Text
+  };
+type StudentOldBalance__1000830295 =
+  {
+    addedAt : Int;
+    amount : Float;
+    id : Text;
+    previousYearDue : ?Float;
+    sessionId : Text;
+    studentId : Text
+  };
+type StudentStatus__808804206 = {#Active; #Discontinued; #Graduated};
+type Student__975845730 =
+  {
+    aadhaarNo : ?Text;
+    admNo : Text;
+    admissionDate : ?Text;
+    apaarNo : ?Text;
+    bloodGroup : ?Text;
+    busNo : ?Text;
+    category : ?Text;
+    classLevel : ClassLevel__663114624;
+    createdAt : Int;
+    currentAddress : Text;
+    dateOfBirth : Text;
+    fatherMobile : Text;
+    fatherName : Text;
+    fullName : Text;
+    gender : Text;
+    id : Text;
+    mobile : ?Text;
+    motherMobile : ?Text;
+    motherName : Text;
+    penNo : ?Text;
+    permanentAddress : Text;
+    photoUrl : ?Text;
+    prevSchool : ?Text;
+    religion : ?Text;
+    sectionId : Text;
+    session : Text;
+    srNo : ?Text;
+    status : StudentStatus__808804206;
+    transportPickupPointId : ?Text;
+    transportRouteId : ?Text
+  };
+type SubjectAssignment__901248144 =
+  {
+    createdAt : Int;
+    id : Text;
+    maxClass : ?Text;
+    minClass : ?Text;
+    session : Text;
+    staffId : Text;
+    subjectId : Text;
+    subjectName : Text
+  };
+type SubjectClassMap__103714336 =
+  {classLevels : [ClassLevel__663114624]; subjectId : Text};
+type SubjectMarkEntry__401516720 =
+  {
+    grade : Text;
+    isPassed : Bool;
+    marksObtained : Float;
+    maxMarks : Float;
+    passingMarks : Float;
+    subjectId : Text;
+    subjectName : Text
+  };
+type Subject__697234594 =
+  {
+    classLevel : ClassLevel__663114624;
+    code : Text;
+    id : Text;
+    maxMarks : Nat;
+    name : Text;
+    passingMarks : Nat
+  };
+type SyllabusChapter__357869300 =
+  {
+    chapterNo : Nat;
+    classLevel : Text;
+    completionPercent : Nat;
+    id : Text;
+    subjectId : Text;
+    title : Text;
+    topics : [Text]
+  };
+type SyllabusContent__673530075 =
+  {
+    approvalStatus : Text;
+    approvedAt : ?Int;
+    chapterId : Text;
+    contentText : Text;
+    generatedQA : [QAPair__613556023];
+    rejectionReason : ?Text;
+    savedQA : [QAPair__613556023];
+    submittedAt : ?Int;
+    userProvidedQuestions : [Text]
+  };
+type TeacherSubjectAssignment__808142611 =
+  {
+    classLevel : ClassLevel__663114624;
+    id : Text;
+    sectionId : ?Text;
+    session : Text;
+    subjectId : Text;
+    teacherId : Text
+  };
+type TeacherTimetableEntry__120600988 =
+  {
+    className : Text;
+    dayOfWeek : Text;
+    endTime : Text;
+    periodNumber : Nat;
+    sectionName : Text;
+    startTime : Text;
+    subjectName : Text
+  };
+type TeacherTimetable__311002721 =
+  {
+    entries : [TeacherTimetableEntry__120600988];
+    generatedAt : Int;
+    id : Text;
+    sessionId : Text;
+    teacherName : Text;
+    teacherStaffId : Text
+  };
+type TransportRoute__625288811 =
+  {
+    busNo : Text;
+    capacity : Nat;
+    driverMobile : Text;
+    driverName : Text;
+    id : Text;
+    routeName : Text;
+    routeNo : Text
+  };
+type UpiPaymentSubmission__1061129001 =
+  {
+    amount : Nat;
+    status : Text;
+    studentId : Text;
+    submittedAt : Text;
+    utrNumber : Text;
+    verifiedAt : ?Text;
+    verifiedBy : ?Text
+  };
+type UserAccount__518253964 =
+  {
+    classLevel : ?ClassLevel__663114624;
+    createdAt : Int;
+    fullName : Text;
+    id : Text;
+    isActive : Bool;
+    permissions : [Text];
+    position : ?Text;
+    principalId : Text;
+    role : Text;
+    sectionId : ?Text;
+    staffId : ?Text;
+    studentId : ?Text;
+    username : Text
+  };
+type UserRole__549269184 =
+  {
+    #Accountant;
+    #Admin;
+    #Driver;
+    #Librarian;
+    #Parent;
+    #Principal;
+    #Student;
+    #Teacher
+  };
+type VirtualClass__393287674 =
+  {
+    classLevel : ClassLevel__663114624;
+    createdBy : Text;
+    durationMinutes : Nat;
+    id : Text;
+    isCompleted : Bool;
+    meetingLink : Text;
+    platform : VirtualPlatform__794501823;
+    scheduledAt : Text;
+    subjectId : ?Text;
+    title : Text
+  };
+type VirtualPlatform__794501823 = {#GoogleMeet; #Other; #Zoom};
+actor {
+  stable MAX_ACTIVITY : Nat;
+  stable _msgTemplateMap :
+    {var root : Node__46230540<Text, Text>; var size : Nat__490723111};
+  stable _students :
+    {
+      var root : Node__46230540<Text, OldStudent__504866468>;
+      var size : Nat__490723111
+    };
+  stable var _studentsV0 : [(Text, OldStudent__504866468)];
+  stable activityLog :
+    {
+      var back : ?Node__585180226<ActivityEntry__349492796>;
+      var front : ?Node__585180226<ActivityEntry__349492796>;
+      var size : Nat__490723111
+    };
+  stable alumni :
+    {
+      var root : Node__46230540<Text, AlumniRecord__260726537>;
+      var size : Nat__490723111
+    };
+  stable var appSettings :
+    {
+      activeTheme : Text;
+      dashboardBgUrl : ?Text;
+      gpayEnabled : Bool;
+      messageTemplates : [(Text, Text)];
+      payuEnabled : Bool;
+      razorpayEnabled : Bool;
+      upiId : ?Text;
+      whatsappApiKey : ?Text;
+      whatsappApiUrl : ?Text
+    };
+  stable appUsers :
+    {
+      var root : Node__46230540<Text, AppUser__460510275>;
+      var size : Nat__490723111
+    };
+  stable attSessions :
+    {
+      var root : Node__46230540<Text, AttendanceSession__942265418>;
+      var size : Nat__490723111
+    };
+  stable attendance :
+    {
+      var root : Node__46230540<Text, AttendanceRecord__852829031>;
+      var size : Nat__490723111
+    };
+  stable var attendanceSystemSettings :
+    {essl : Bool; face : Bool; qr : Bool; rfid : Bool};
+  stable auditLogs :
+    {
+      var root : Node__46230540<Text, AuditLog__6242273>;
+      var size : Nat__490723111
+    };
+  stable autoCreatedCredentials :
+    {
+      var root :
+        Node__46230540<Text, {password : Text; role : Text; username : Text}>;
+      var size : Nat__490723111
+    };
+  stable var backupSettings :
+    {
+      backupGmail : ?Text;
+      backupSchedule : BackupSchedule__293906320;
+      lastBackupTimestamp : Int
+    };
+  stable bookIssues :
+    {
+      var root : Node__46230540<Text, BookIssue__951742585>;
+      var size : Nat__490723111
+    };
+  stable books :
+    {
+      var root : Node__46230540<Text, Book__232940326>;
+      var size : Nat__490723111
+    };
+  stable busLocations :
+    {
+      var root : Node__46230540<Text, BusLocation__241812035>;
+      var size : Nat__490723111
+    };
+  stable certTemplates :
+    {
+      var root : Node__46230540<Text, CertificateTemplate__780740921>;
+      var size : Nat__490723111
+    };
+  stable certTemplatesExt :
+    {
+      var root : Node__46230540<Text, CertificateTemplate__247560661>;
+      var size : Nat__490723111
+    };
+  stable chapters :
+    {
+      var root : Node__46230540<Text, SyllabusChapter__357869300>;
+      var size : Nat__490723111
+    };
+  stable chatMessages :
+    {
+      var root : Node__46230540<Text, ChatMessage__1037536196>;
+      var size : Nat__490723111
+    };
+  stable chatRooms :
+    {
+      var root : Node__46230540<Text, ChatRoom__657595135>;
+      var size : Nat__490723111
+    };
+  stable classLinksStore :
+    {
+      var root : Node__46230540<Text, ClassLinks__249016704>;
+      var size : Nat__490723111
+    };
+  stable classTimetables :
+    {
+      var root : Node__46230540<Text, ClassTimetable__286075045>;
+      var size : Nat__490723111
+    };
+  stable classTtGenId : {var value : Nat};
+  stable customColumnDefs :
+    {
+      var root :
+        Node__46230540<Text,
+                        {columnLabel : Text; fieldType : Text; key : Text}>;
+      var size : Nat__490723111
+    };
+  stable defaultPaidLeaveConfig : {daysPerMonth : Float; updatedAt : Int};
+  stable deviceAttendance :
+    {
+      var root : Node__46230540<Nat, DeviceAttendanceRecord__583086083>;
+      var size : Nat__490723111
+    };
+  stable deviceConfigs :
+    {
+      var root : Node__46230540<Text, DeviceConfig__778080928>;
+      var size : Nat__490723111
+    };
+  stable directMessages :
+    {
+      var root : Node__46230540<Text, DirectMessage__994066101>;
+      var size : Nat__490723111
+    };
+  stable enhancedPayroll :
+    {
+      var root : Node__46230540<Text, EnhancedPayrollRecord__509625334>;
+      var size : Nat__490723111
+    };
+  stable examCalendarStore :
+    {
+      var root : Node__46230540<Text, ExamCalendarEntry__278599610>;
+      var size : Nat__490723111
+    };
+  stable examConfigs :
+    {
+      var root : Node__46230540<Text, ExamConfig__593032209>;
+      var size : Nat__490723111
+    };
+  stable examResults :
+    {
+      var root : Node__46230540<Text, ExamResult__14229232>;
+      var size : Nat__490723111
+    };
+  stable examResultsV2 :
+    {
+      var root : Node__46230540<Text, ExamResultV2__884843914>;
+      var size : Nat__490723111
+    };
+  stable examSubmissions :
+    {
+      var root : Node__46230540<Text, OnlineExamSubmission__519399747>;
+      var size : Nat__490723111
+    };
+  stable examTimetables :
+    {
+      var root : Node__46230540<Text, ExamTimetable__589874324>;
+      var size : Nat__490723111
+    };
+  stable expenseEntries :
+    {
+      var root : Node__46230540<Text, ExpenseEntry__804719860>;
+      var size : Nat__490723111
+    };
+  stable expenseEntriesV2 :
+    {
+      var root : Node__46230540<Text, ExpenseEntry__590098545>;
+      var size : Nat__490723111
+    };
+  stable expenseHeads :
+    {
+      var root : Node__46230540<Text, ExpenseHead__660566883>;
+      var size : Nat__490723111
+    };
+  stable expenseHeadsV2 :
+    {
+      var root : Node__46230540<Text, ExpenseHead__972477267>;
+      var size : Nat__490723111
+    };
+  stable faceEnrollments :
+    {
+      var root : Node__46230540<Text, FaceEnrollmentRecord__9262943>;
+      var size : Nat__490723111
+    };
+  stable feeAuditLogs :
+    {
+      var root : Node__46230540<Text, FeeAuditLog__240592391>;
+      var size : Nat__490723111
+    };
+  stable feeHeadings :
+    {
+      var root : Node__46230540<Text, FeeHeading__241819758>;
+      var size : Nat__490723111
+    };
+  stable feePayments :
+    {
+      var root : Node__46230540<Text, FeePayment__280713833>;
+      var size : Nat__490723111
+    };
+  stable feePlans :
+    {
+      var root : Node__46230540<Text, FeePlan__195043195>;
+      var size : Nat__490723111
+    };
+  stable feeRegister :
+    {
+      var root :
+        Node__46230540<Text,
+                        {
+                          collectedBy : Text;
+                          id : Text;
+                          isDeleted : Bool;
+                          paymentDate : Text;
+                          receiptNo : Text;
+                          studentId : Text;
+                          totalAmount : Nat
+                        }>;
+      var size : Nat__490723111
+    };
+  stable genExpenseId : {var value : Nat};
+  stable genSubjectAssignId : {var value : Nat};
+  stable gpayCallbacks :
+    {
+      var root :
+        Node__46230540<Text,
+                        {
+                          amount : Float;
+                          confirmedAt : Int;
+                          status : Text;
+                          studentId : Text;
+                          transactionId : Text;
+                          utrNo : Text
+                        }>;
+      var size : Nat__490723111
+    };
+  stable holidays :
+    {
+      var root : Node__46230540<Text, Holiday__491596039>;
+      var size : Nat__490723111
+    };
+  stable homework :
+    {
+      var root : Node__46230540<Text, HomeworkEntry__713044876>;
+      var size : Nat__490723111
+    };
+  stable hwSubmissions :
+    {
+      var root : Node__46230540<Text, HomeworkSubmission__419194933>;
+      var size : Nat__490723111
+    };
+  stable indexPageConfigStore :
+    {
+      var root : Node__46230540<Text, IndexPageConfig__1039600891>;
+      var size : Nat__490723111
+    };
+  stable invItems :
+    {
+      var root : Node__46230540<Text, InventoryItem__576608082>;
+      var size : Nat__490723111
+    };
+  stable invTransactions :
+    {
+      var root : Node__46230540<Text, InventoryTransaction__436067919>;
+      var size : Nat__490723111
+    };
+  stable msgTemplateStore :
+    {
+      var value :
+        {var root : Node__46230540<Text, Text>; var size : Nat__490723111}
+    };
+  stable nextAppUserId : {var value : Nat};
+  stable nextAppUserIdValue : Nat;
+  stable nextCertId : {var value : Nat};
+  stable nextCertIdValue : Nat;
+  stable nextClassTtIdValue : Nat;
+  stable nextDeviceAttId : {var value : Nat};
+  stable nextDeviceAttIdValue : Nat;
+  stable nextExamCalId : {var value : Nat};
+  stable nextExamCalIdValue : Nat;
+  stable nextExamResultId : {var value : Nat};
+  stable nextExamResultIdValue : Nat;
+  stable nextExpenseIdValue : Nat;
+  stable nextExtrasId : {var value : Nat};
+  stable nextExtrasIdValue : Nat;
+  stable var nextId : Nat;
+  stable nextSmartExamId : {var value : Nat};
+  stable nextSmartExamIdValue : Nat;
+  stable nextStaffAttId : {var value : Nat};
+  stable nextStaffAttIdValue : Nat;
+  stable nextSubjectAssignIdValue : Nat;
+  stable notifications :
+    {
+      var root : Node__46230540<Text, Notification__879889657>;
+      var size : Nat__490723111
+    };
+  stable onlineExams :
+    {
+      var root : Node__46230540<Text, OnlineExam__884984756>;
+      var size : Nat__490723111
+    };
+  stable paidLeaveConfigRef :
+    {var value : {daysPerMonth : Float; updatedAt : Int}};
+  stable payrollRecords :
+    {
+      var root : Node__46230540<Text, PayrollRecord__478220478>;
+      var size : Nat__490723111
+    };
+  stable payrollRecordsPC :
+    {
+      var root : Node__46230540<Text, StaffPayrollRecord__370182596>;
+      var size : Nat__490723111
+    };
+  stable pickupPoints :
+    {
+      var root : Node__46230540<Text, PickupPoint__743205916>;
+      var size : Nat__490723111
+    };
+  stable var receiptCounter : Nat;
+  stable rolePermissions :
+    {
+      var root : Node__46230540<Text, RolePermissions__469317481>;
+      var size : Nat__490723111
+    };
+  stable routes :
+    {
+      var root : Node__46230540<Text, TransportRoute__625288811>;
+      var size : Nat__490723111
+    };
+  stable var schoolInfo :
+    {
+      about : Text;
+      address : Text;
+      email : Text;
+      name : Text;
+      phone : Text;
+      photoUrl : ?Text;
+      website : ?Text
+    };
+  stable sections :
+    {
+      var root : Node__46230540<Text, Section__958497798>;
+      var size : Nat__490723111
+    };
+  stable sessions :
+    {
+      var root : Node__46230540<Text, AcademicSession__475055566>;
+      var size : Nat__490723111
+    };
+  stable smartExamTimetables :
+    {
+      var root : Node__46230540<Nat, SmartExamTimetable__525512122>;
+      var size : Nat__490723111
+    };
+  stable staff :
+    {
+      var root : Node__46230540<Text, Staff__880930854>;
+      var size : Nat__490723111
+    };
+  stable staffAttendance :
+    {
+      var root : Node__46230540<Nat, StaffAttendanceRecord__256094700>;
+      var size : Nat__490723111
+    };
+  stable staffIncentives :
+    {
+      var root : Node__46230540<Text, StaffIncentive__93244034>;
+      var size : Nat__490723111
+    };
+  stable staffLoans :
+    {
+      var root : Node__46230540<Text, StaffLoan__313891978>;
+      var size : Nat__490723111
+    };
+  stable staffPayouts :
+    {
+      var root : Node__46230540<Text, StaffPayout__198705590>;
+      var size : Nat__490723111
+    };
+  stable studentCustomData :
+    {
+      var root : Node__46230540<Text, Map__605269027<Text, Text>>;
+      var size : Nat__490723111
+    };
+  stable studentDiscounts :
+    {
+      var root : Node__46230540<Text, StudentDiscount__742558432>;
+      var size : Nat__490723111
+    };
+  stable studentOldBalances :
+    {
+      var root : Node__46230540<Text, StudentOldBalance__1000830295>;
+      var size : Nat__490723111
+    };
+  stable studentsV2 :
+    {
+      var root : Node__46230540<Text, Student__975845730>;
+      var size : Nat__490723111
+    };
+  stable subjectAssignments :
+    {
+      var root : Node__46230540<Text, SubjectAssignment__901248144>;
+      var size : Nat__490723111
+    };
+  stable subjectClassMaps :
+    {
+      var root : Node__46230540<Text, SubjectClassMap__103714336>;
+      var size : Nat__490723111
+    };
+  stable subjects :
+    {
+      var root : Node__46230540<Text, Subject__697234594>;
+      var size : Nat__490723111
+    };
+  stable syllabusContents :
+    {
+      var root : Node__46230540<Text, SyllabusContent__673530075>;
+      var size : Nat__490723111
+    };
+  stable teacherAssignments :
+    {
+      var root : Node__46230540<Text, TeacherSubjectAssignment__808142611>;
+      var size : Nat__490723111
+    };
+  stable teacherTimetables :
+    {
+      var root : Node__46230540<Text, TeacherTimetable__311002721>;
+      var size : Nat__490723111
+    };
+  stable upiPaymentSubmissions :
+    {
+      var root : Node__46230540<Text, UpiPaymentSubmission__1061129001>;
+      var size : Nat__490723111
+    };
+  stable userAccounts :
+    {
+      var root : Node__46230540<Text, UserAccount__518253964>;
+      var size : Nat__490723111
+    };
+  stable userRoleMap :
+    {
+      var root : Node__46230540<Text, UserRole__549269184>;
+      var size : Nat__490723111
+    };
+  stable virtualClasses :
+    {
+      var root : Node__46230540<Text, VirtualClass__393287674>;
+      var size : Nat__490723111
+    }
+};

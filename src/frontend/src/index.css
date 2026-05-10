@@ -1,0 +1,324 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "DM Sans";
+    --font-mono: "Geist Mono";
+    --radius: 0.5rem;
+
+    /* Deep Blue (navy-gold) — default theme.
+       IMPORTANT: All color vars store ONLY the OKLCH channel values
+       (L C H) so Tailwind's oklch(var(--primary) / alpha) works correctly.
+       Do NOT include "oklch(...)" wrapper — only bare channel values. */
+    --background: 0.97 0.007 240;
+    --foreground: 0.15 0.04 240;
+    --card: 1 0 0;
+    --card-foreground: 0.15 0.04 240;
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0.04 240;
+
+    --primary: 0.28 0.12 245;
+    --primary-foreground: 0.97 0 0;
+
+    --secondary: 0.91 0.03 240;
+    --secondary-foreground: 0.28 0.12 245;
+    --muted: 0.93 0.015 240;
+    --muted-foreground: 0.48 0.04 240;
+
+    --accent: 0.68 0.18 198;
+    --accent-foreground: 0.12 0.06 220;
+
+    --destructive: 0.52 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.87 0.02 240;
+    --input: 0.87 0.02 240;
+    --ring: 0.68 0.18 198;
+
+    --chart-1: 0.65 0.22 40;
+    --chart-2: 0.6 0.18 185;
+    --chart-3: 0.45 0.12 270;
+    --chart-4: 0.72 0.18 130;
+    --chart-5: 0.58 0.2 310;
+
+    /* Sidebar tokens */
+    --sidebar: 0.2 0.1 245;
+    --sidebar-background: 0.2 0.1 245;
+    --sidebar-foreground: 0.94 0.01 240;
+    --sidebar-primary: 0.68 0.18 198;
+    --sidebar-primary-foreground: 0.12 0.06 220;
+    --sidebar-accent: 0.32 0.12 245;
+    --sidebar-accent-foreground: 0.97 0 0;
+    --sidebar-border: 0.3 0.1 245;
+    --sidebar-ring: 0.68 0.18 198;
+  }
+
+  /* Dark mode — overridden per-theme by applyThemeToDom() at runtime */
+  .dark {
+    --background: 0.13 0.012 240;
+    --foreground: 0.92 0.01 240;
+    --card: 0.17 0.012 240;
+    --card-foreground: 0.92 0.01 240;
+    --popover: 0.17 0.012 240;
+    --popover-foreground: 0.92 0.01 240;
+
+    --primary: 0.68 0.2 193;
+    --primary-foreground: 0.1 0.01 240;
+
+    --secondary: 0.22 0.02 240;
+    --secondary-foreground: 0.86 0.01 240;
+    --muted: 0.22 0.015 240;
+    --muted-foreground: 0.6 0.02 240;
+
+    --accent: 0.72 0.22 190;
+    --accent-foreground: 0.1 0.01 240;
+
+    --destructive: 0.6 0.22 25;
+    --destructive-foreground: 0.97 0 0;
+
+    --border: 0.26 0.02 240;
+    --input: 0.26 0.02 240;
+    --ring: 0.68 0.2 193;
+
+    --sidebar: 0.1 0.01 240;
+    --sidebar-background: 0.1 0.01 240;
+    --sidebar-foreground: 0.9 0.01 240;
+    --sidebar-primary: 0.68 0.2 193;
+    --sidebar-primary-foreground: 0.1 0.01 240;
+    --sidebar-accent: 0.2 0.018 240;
+    --sidebar-accent-foreground: 0.92 0.01 240;
+    --sidebar-border: 0.2 0.018 240;
+    --sidebar-ring: 0.68 0.2 193;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+/* ─── Z-Index Stacking Strategy ──────────────────────────────────────────────
+   CANONICAL z-index hierarchy (ultra-high to guarantee above ALL page content):
+     1–99    Page content (cards, tables, etc.)
+     100–199 Sticky headers / sidebars
+     200–299 Inline dropdowns / non-blocking overlays
+     1000    Mobile sidebar backdrop
+     1001    Mobile sidebar panel
+     9999    Dialog / Sheet / Drawer overlay (backdrop)
+     10000   Dialog / Sheet / Drawer content
+     10001   Alert-dialog overlay (above regular dialogs)
+     10002   Alert-dialog content
+     10003   Dropdowns / Selects / Popovers / Comboboxes (above all dialogs)
+     10004   Tooltips
+     10005   Toast notifications
+     10010   Photo lightbox / full-screen overlay
+
+   ALL Radix UI portaled components render into document.body.
+   We also apply inline style z-index on overlays and content for 100% reliability.
+   CSS !important + inline style = guaranteed stacking regardless of other CSS.
+*/
+
+/* ── Page chrome must NEVER block modals ────────────────────────────────────── */
+/* Sidebar/header z-index is intentionally LOW (below modal stack at 9999+).    */
+header,
+nav,
+aside,
+.sidebar,
+[data-slot="sidebar"],
+[data-sidebar="sidebar"] {
+  z-index: 100 !important;
+}
+
+/* ── Generic modal/dialog fallback (non-Radix custom dialogs) ───────────────── */
+dialog,
+[role="dialog"],
+.modal-overlay {
+  z-index: 9999 !important;
+}
+
+/* ── Photo lightbox / full-screen overlay ───────────────────────────────────── */
+.photo-lightbox {
+  z-index: 10010 !important;
+  position: fixed !important;
+  inset: 0 !important;
+}
+
+/* ── Mobile sidebar backdrop & panel ────────────────────────────────────────── */
+.mobile-sidebar-backdrop {
+  z-index: 1000 !important;
+}
+.mobile-sidebar-panel {
+  z-index: 1001 !important;
+}
+
+/* ── Dialog overlay & content ────────────────────────────────────────────────── */
+[data-slot="dialog-overlay"] {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
+}
+[data-slot="dialog-content"] {
+  z-index: 10000 !important;
+  position: fixed !important;
+}
+
+/* ── Sheet overlay & content ───────────────────────────────────────────────── */
+[data-slot="sheet-overlay"] {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
+}
+[data-slot="sheet-content"] {
+  z-index: 10000 !important;
+  position: fixed !important;
+}
+
+/* ── Vaul Drawer overlay & content ─────────────────────────────────────────── */
+[data-slot="drawer-overlay"] {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
+}
+[data-slot="drawer-content"] {
+  z-index: 10000 !important;
+  position: fixed !important;
+}
+
+/* ── Alert-dialog overlay & content ─────────────────────────────────────────── */
+[data-slot="alert-dialog-overlay"] {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 10001 !important;
+}
+[data-slot="alert-dialog-content"] {
+  z-index: 10002 !important;
+  position: fixed !important;
+}
+
+/* ── Shadcn command palette ─────────────────────────────────────────────────── */
+[cmdk-overlay],
+[data-cmdk-overlay] {
+  z-index: 10001 !important;
+}
+[cmdk-dialog],
+[data-cmdk-dialog] {
+  z-index: 10002 !important;
+}
+
+/* ── Radix Popper content wrapper (Select, Popover, Combobox, etc.) ──────────
+   Must be above ALL dialogs (10000) and alert-dialogs (10002) so dropdowns
+   inside dialogs always float on top.                                          */
+[data-radix-popper-content-wrapper] {
+  z-index: 10003 !important;
+}
+
+/* ── Radix Select portal content ────────────────────────────────────────────── */
+[data-slot="select-content"] {
+  z-index: 10003 !important;
+}
+
+/* ── Radix Popover / Dropdown menu content ──────────────────────────────────── */
+[data-slot="popover-content"],
+[data-radix-popover-content],
+[data-slot="dropdown-menu-content"],
+[data-slot="dropdown-menu-sub-content"],
+[data-radix-dropdown-menu-content],
+[data-radix-context-menu-content],
+[data-radix-menubar-content] {
+  z-index: 10003 !important;
+}
+
+/* ── Custom inline dropdowns (non-Radix) ────────────────────────────────────── */
+.z-dropdown {
+  z-index: 10003 !important;
+}
+
+/* ── Notification popover panel (custom, non-Radix) ──────────────────────────  */
+.notification-popover {
+  z-index: 10003 !important;
+}
+
+/* ── Radix Tooltip ──────────────────────────────────────────────────────────── */
+[data-slot="tooltip-content"],
+[data-radix-tooltip-content] {
+  z-index: 10004 !important;
+}
+
+/* ── Sonner toast notifications ─────────────────────────────────────────────── */
+[data-sonner-toaster] {
+  z-index: 10005 !important;
+}
+
+/* ─── End Z-Index Stacking ───────────────────────────────────────────────── */
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@layer utilities {
+  /* Financial input helper — removes '0' display when field is conceptually empty.
+     Usage: add class 'financial-input' to input elements for Discount/Old Balance etc.
+     The field uses value='' default (not 0) and placeholder='0.00'.
+     This CSS rule hides a literally-typed "0" text color to discourage it being seen
+     as meaningful — the JS side is responsible for empty string default values. */
+  .financial-input:not(:focus)[value="0"] {
+    color: transparent;
+  }
+  .financial-input:not(:focus)[value="0"]::placeholder {
+    color: oklch(var(--muted-foreground) / 1);
+  }
+
+  .transition-smooth {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .badge-primary {
+    @apply inline-flex items-center px-2.5 py-1 rounded-md bg-primary text-primary-foreground text-xs font-semibold;
+  }
+
+  .badge-accent {
+    @apply inline-flex items-center px-2.5 py-1 rounded-md bg-accent text-accent-foreground text-xs font-semibold;
+  }
+
+  .badge-muted {
+    @apply inline-flex items-center px-2.5 py-1 rounded-md bg-muted text-muted-foreground text-xs font-semibold;
+  }
+
+  .card-module {
+    @apply bg-card border-l-4 border-l-primary rounded-lg p-4 shadow-sm transition-smooth;
+  }
+
+  .card-metric {
+    @apply bg-card rounded-lg p-6 border border-border transition-smooth;
+  }
+
+  .table-row-alt {
+    @apply even:bg-muted/30;
+  }
+
+  .sidebar-link-active {
+    @apply bg-sidebar-accent text-sidebar-accent-foreground;
+  }
+}

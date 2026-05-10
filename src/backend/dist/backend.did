@@ -1,0 +1,2839 @@
+type VirtualPlatform = 
+ variant {
+   GoogleMeet;
+   Other;
+   Zoom;
+ };
+type VirtualClass = 
+ record {
+   classLevel: ClassLevel;
+   createdBy: text;
+   durationMinutes: nat;
+   id: text;
+   isCompleted: bool;
+   meetingLink: text;
+   platform: VirtualPlatform;
+   scheduledAt: text;
+   subjectId: opt text;
+   title: text;
+ };
+type UserRole = 
+ variant {
+   Accountant;
+   Admin;
+   Driver;
+   Librarian;
+   Parent;
+   Principal;
+   Student;
+   Teacher;
+ };
+type UserAccountRow = 
+ record {
+   classLevel: opt ClassLevel;
+   createdAt: int;
+   fullName: text;
+   id: text;
+   isActive: bool;
+   permissions: vec text;
+   position: opt text;
+   principalId: text;
+   role: text;
+   sectionId: opt text;
+   staffId: opt text;
+   studentId: opt text;
+   username: text;
+ };
+type UserAccount = 
+ record {
+   classLevel: opt ClassLevel;
+   createdAt: int;
+   fullName: text;
+   id: text;
+   isActive: bool;
+   permissions: vec text;
+   position: opt text;
+   principalId: text;
+   role: text;
+   sectionId: opt text;
+   staffId: opt text;
+   studentId: opt text;
+   username: text;
+ };
+type UpiPaymentSubmission = 
+ record {
+   amount: nat;
+   status: text;
+   studentId: text;
+   submittedAt: text;
+   utrNumber: text;
+   verifiedAt: opt text;
+   verifiedBy: opt text;
+ };
+type TransportRoute = 
+ record {
+   busNo: text;
+   capacity: nat;
+   driverMobile: text;
+   driverName: text;
+   id: text;
+   routeName: text;
+   routeNo: text;
+ };
+type TimetableCellRef = 
+ record {
+   classId: text;
+   dayOfWeek: text;
+   periodNumber: nat;
+ };
+type TeacherTimetableEntry = 
+ record {
+   className: text;
+   dayOfWeek: text;
+   endTime: text;
+   periodNumber: nat;
+   sectionName: text;
+   startTime: text;
+   subjectName: text;
+ };
+type TeacherTimetable = 
+ record {
+   entries: vec TeacherTimetableEntry;
+   generatedAt: int;
+   id: text;
+   sessionId: text;
+   teacherName: text;
+   teacherStaffId: text;
+ };
+type TeacherSubjectAssignment = 
+ record {
+   classLevel: ClassLevel;
+   id: text;
+   sectionId: opt text;
+   session: text;
+   subjectId: text;
+   teacherId: text;
+ };
+type SyllabusContentRow = 
+ record {
+   approvalStatus: text;
+   approvedAt: opt int;
+   chapterId: text;
+   contentText: text;
+   generatedQA: vec QAPairRow;
+   rejectionReason: opt text;
+   savedQA: vec QAPairRow;
+   submittedAt: opt int;
+   userProvidedQuestions: vec text;
+ };
+type SyllabusContent = 
+ record {
+   approvalStatus: text;
+   approvedAt: opt int;
+   chapterId: text;
+   contentText: text;
+   generatedQA: vec QAPair;
+   rejectionReason: opt text;
+   savedQA: vec QAPair;
+   submittedAt: opt int;
+   userProvidedQuestions: vec text;
+ };
+type SyllabusChapterRow = 
+ record {
+   chapterNo: nat;
+   classLevel: text;
+   completionPercent: nat;
+   id: text;
+   subjectId: text;
+   title: text;
+   topics: vec text;
+ };
+type SyllabusChapter = 
+ record {
+   chapterNo: nat;
+   classLevel: text;
+   completionPercent: nat;
+   id: text;
+   subjectId: text;
+   title: text;
+   topics: vec text;
+ };
+type SubjectRow = 
+ record {
+   classLevel: ClassLevel;
+   code: text;
+   id: text;
+   maxMarks: nat;
+   name: text;
+   passingMarks: nat;
+ };
+type SubjectMarkEntry = 
+ record {
+   grade: text;
+   isPassed: bool;
+   marksObtained: float64;
+   maxMarks: float64;
+   passingMarks: float64;
+   subjectId: text;
+   subjectName: text;
+ };
+type SubjectClassMapRow = 
+ record {
+   classLevels: vec ClassLevel;
+   subjectId: text;
+ };
+type SubjectClassMap = 
+ record {
+   classLevels: vec ClassLevel;
+   subjectId: text;
+ };
+type SubjectAssignment = 
+ record {
+   createdAt: int;
+   id: text;
+   maxClass: opt text;
+   minClass: opt text;
+   session: text;
+   staffId: text;
+   subjectId: text;
+   subjectName: text;
+ };
+type Subject = 
+ record {
+   classLevel: ClassLevel;
+   code: text;
+   id: text;
+   maxMarks: nat;
+   name: text;
+   passingMarks: nat;
+ };
+type StudentWithPickupPoint = 
+ record {
+   pickupPoint: opt PickupPoint;
+   student: Student;
+ };
+type StudentStatus = 
+ variant {
+   Active;
+   Discontinued;
+   Graduated;
+ };
+type StudentRow = 
+ record {
+   aadhaarNo: opt text;
+   admNo: text;
+   admissionDate: opt text;
+   apaarNo: opt text;
+   bloodGroup: opt text;
+   busNo: opt text;
+   category: opt text;
+   classLevel: ClassLevel;
+   createdAt: int;
+   currentAddress: text;
+   dateOfBirth: text;
+   fatherMobile: text;
+   fatherName: text;
+   fullName: text;
+   gender: text;
+   id: text;
+   mobile: opt text;
+   motherMobile: opt text;
+   motherName: text;
+   penNo: opt text;
+   permanentAddress: text;
+   photoUrl: opt text;
+   prevSchool: opt text;
+   religion: opt text;
+   sectionId: text;
+   session: text;
+   srNo: opt text;
+   status: StudentStatus;
+   transportPickupPointId: opt text;
+   transportRouteId: opt text;
+ };
+type StudentOldBalanceRow = 
+ record {
+   addedAt: int;
+   amount: float64;
+   id: text;
+   sessionId: text;
+   studentId: text;
+ };
+type StudentOldBalance = 
+ record {
+   addedAt: int;
+   amount: float64;
+   id: text;
+   previousYearDue: opt float64;
+   sessionId: text;
+   studentId: text;
+ };
+type StudentFeeCollectionData = 
+ record {
+   admNo: text;
+   className: text;
+   discounts: vec StudentDiscount;
+   fatherMobile: text;
+   fatherName: text;
+   feePlan: opt FeePlan;
+   inventoryDue: nat;
+   oldBalanceAmount: float64;
+   payments: vec FeePayment;
+   photoUrl: opt text;
+   previousYearDue: float64;
+   sectionName: text;
+   studentId: text;
+   studentName: text;
+   totalPaid: nat;
+   transportMonthlyFare: float64;
+   transportPickupPointId: opt text;
+   transportRouteId: opt text;
+ };
+type StudentDiscountRow = 
+ record {
+   amount: nat;
+   createdAt: int;
+   headingId: text;
+   id: text;
+   remark: opt text;
+   studentId: text;
+ };
+type StudentDiscount = 
+ record {
+   amount: nat;
+   createdAt: int;
+   headingId: text;
+   id: text;
+   remark: opt text;
+   studentId: text;
+ };
+type Student = 
+ record {
+   aadhaarNo: opt text;
+   admNo: text;
+   admissionDate: opt text;
+   apaarNo: opt text;
+   bloodGroup: opt text;
+   busNo: opt text;
+   category: opt text;
+   classLevel: ClassLevel;
+   createdAt: int;
+   currentAddress: text;
+   dateOfBirth: text;
+   fatherMobile: text;
+   fatherName: text;
+   fullName: text;
+   gender: text;
+   id: text;
+   mobile: opt text;
+   motherMobile: opt text;
+   motherName: text;
+   penNo: opt text;
+   permanentAddress: text;
+   photoUrl: opt text;
+   prevSchool: opt text;
+   religion: opt text;
+   sectionId: text;
+   session: text;
+   srNo: opt text;
+   status: StudentStatus;
+   transportPickupPointId: opt text;
+   transportRouteId: opt text;
+ };
+type StaffYearEndSummary = 
+ record {
+   monthsFullyPaid: nat;
+   monthsPartiallyPaid: nat;
+   monthsUnpaid: nat;
+   totalDeductions: float64;
+   totalEarned: float64;
+   totalIncentives: float64;
+   totalPaid: float64;
+ };
+type StaffStatus = 
+ variant {
+   Active;
+   Inactive;
+ };
+type StaffRow = 
+ record {
+   aadhaarNo: opt text;
+   address: text;
+   bankAccount: opt text;
+   createdAt: int;
+   dateOfJoining: text;
+   department: text;
+   designation: text;
+   email: opt text;
+   employeeId: text;
+   fullName: text;
+   id: text;
+   ifscCode: opt text;
+   mobile: text;
+   photoUrl: opt text;
+   salary: nat;
+   status: StaffStatus;
+ };
+type StaffPayrollRecord = 
+ record {
+   absentDays: nat;
+   amountPaid: nat;
+   baseSalary: nat;
+   deductibleDays: nat;
+   deduction: nat;
+   freeLeave: nat;
+   generatedAt: int;
+   id: text;
+   lockedAt: opt int;
+   month: nat;
+   netPay: nat;
+   notes: text;
+   presentDays: nat;
+   staffId: text;
+   status: PayrollMonthStatus;
+   workingDays: nat;
+   year: nat;
+ };
+type StaffPayoutRow = 
+ record {
+   amount: float64;
+   createdAt: int;
+   date: text;
+   id: text;
+   mode: text;
+   notes: text;
+   recordedBy: text;
+   staffId: text;
+ };
+type StaffPayout = 
+ record {
+   amount: float64;
+   createdAt: int;
+   date: text;
+   id: text;
+   mode: text;
+   notes: text;
+   recordedBy: text;
+   staffId: text;
+ };
+type StaffPaymentSummaryEntry = 
+ record {
+   amountPaid: float64;
+   month: text;
+   netSalary: opt float64;
+   status: text;
+ };
+type StaffLoanRow = 
+ record {
+   createdAt: int;
+   id: text;
+   monthlyDeduction: float64;
+   notes: text;
+   principalAmount: float64;
+   remainingAmount: float64;
+   staffId: text;
+   startMonth: text;
+ };
+type StaffLoan = 
+ record {
+   createdAt: int;
+   id: text;
+   monthlyDeduction: float64;
+   notes: text;
+   principalAmount: float64;
+   remainingAmount: float64;
+   staffId: text;
+   startMonth: text;
+ };
+type StaffIncentiveRow = 
+ record {
+   amount: float64;
+   approvedBy: text;
+   createdAt: int;
+   id: text;
+   month: text;
+   reason: text;
+   staffId: text;
+   year: text;
+ };
+type StaffIncentive = 
+ record {
+   amount: float64;
+   approvedBy: text;
+   createdAt: int;
+   id: text;
+   month: text;
+   reason: text;
+   staffId: text;
+   year: text;
+ };
+type StaffAttendanceRecord = 
+ record {
+   date: text;
+   deviceType: AttendanceDevice;
+   id: nat;
+   inTime: opt text;
+   month: nat;
+   outTime: opt text;
+   staffId: text;
+   staffName: text;
+   year: nat;
+ };
+type StaffAttBreakdown = 
+ record {
+   presentCount: nat;
+   staffList:
+    vec
+     record {
+       inTime: opt text;
+       name: text;
+       outTime: opt text;
+       staffId: text;
+       status: text;
+     };
+   totalCount: nat;
+ };
+type Staff = 
+ record {
+   aadhaarNo: opt text;
+   address: text;
+   bankAccount: opt text;
+   createdAt: int;
+   dateOfJoining: text;
+   department: text;
+   designation: text;
+   email: opt text;
+   employeeId: text;
+   fullName: text;
+   id: text;
+   ifscCode: opt text;
+   mobile: text;
+   photoUrl: opt text;
+   salary: nat;
+   status: StaffStatus;
+ };
+type SmartTimetableEntry = 
+ record {
+   classLevel: ClassLevel;
+   date: text;
+   day: text;
+   isLocked: bool;
+   position: nat;
+   subjectName: text;
+ };
+type SmartExamTimetable = 
+ record {
+   endDate: text;
+   endTime: text;
+   entries: vec SmartTimetableEntry;
+   examName: text;
+   id: nat;
+   participatingClasses: vec ClassLevel;
+   sessionId: text;
+   startDate: text;
+   startTime: text;
+   status: text;
+ };
+type SessionRow = 
+ record {
+   createdAt: int;
+   endDate: text;
+   id: text;
+   isActive: bool;
+   isArchived: bool;
+   sessionName: text;
+   startDate: text;
+ };
+type SectionRow = 
+ record {
+   classLevel: ClassLevel;
+   id: text;
+   roomNo: opt text;
+   sectionName: text;
+   teacherId: opt text;
+ };
+type Section = 
+ record {
+   classLevel: ClassLevel;
+   id: text;
+   roomNo: opt text;
+   sectionName: text;
+   teacherId: opt text;
+ };
+type SchoolInfoRow = 
+ record {
+   about: text;
+   address: text;
+   email: text;
+   name: text;
+   phone: text;
+   photoUrl: opt text;
+   website: opt text;
+ };
+type SchoolInfo = 
+ record {
+   about: text;
+   address: text;
+   email: text;
+   name: text;
+   phone: text;
+   photoUrl: opt text;
+   website: opt text;
+ };
+type RouteRow = 
+ record {
+   busNo: text;
+   capacity: nat;
+   driverMobile: text;
+   driverName: text;
+   id: text;
+   routeName: text;
+   routeNo: text;
+ };
+type RoomRec = 
+ record {
+   createdAt: int;
+   createdBy: text;
+   id: text;
+   members: vec text;
+   name: text;
+   roomType: variant {
+               ClassGroup;
+               Direct;
+               General;
+               RouteGroup;
+             };
+ };
+type RolePermissions = 
+ record {
+   modulePermissions: vec ModulePermission;
+   role: UserRole;
+ };
+type RestoreStats = 
+ record {
+   alumniRecords: nat;
+   attendance: nat;
+   chatRooms: nat;
+   classTimetables: nat;
+   deviceAttendance: nat;
+   enhancedPayroll: nat;
+   examTimetables: nat;
+   expenseEntries: nat;
+   expenseHeads: nat;
+   faceEnrollments: nat;
+   feeCollections: nat;
+   feeHeadings: nat;
+   feePlans: nat;
+   inventory: nat;
+   inventoryTx: nat;
+   libraryBooks: nat;
+   libraryIssues: nat;
+   notifications: nat;
+   payrollRecords: nat;
+   pickupPoints: nat;
+   routes: nat;
+   sections: nat;
+   sessions: nat;
+   staff: nat;
+   staffAttendance: nat;
+   staffIncentives: nat;
+   staffLoans: nat;
+   staffPayouts: nat;
+   studentDiscounts: nat;
+   studentOldBalances: nat;
+   students: nat;
+   subjectAssignments: nat;
+   subjectClassMaps: nat;
+   subjects: nat;
+   syllabusChapters: nat;
+   syllabusContents: nat;
+   total: nat;
+   userAccounts: nat;
+ };
+type RestoreResult = 
+ record {
+   errors: vec BackupError;
+   failCount: nat;
+   message: text;
+   recordCounts: RestoreStats;
+   skippedCount: nat;
+   success: bool;
+   successCount: nat;
+ };
+type QAPairRow = 
+ record {
+   answer: text;
+   question: text;
+ };
+type QAPair = 
+ record {
+   answer: text;
+   question: text;
+ };
+type PromotionResult = 
+ record {
+   errors: vec text;
+   failed: nat;
+   promoted: nat;
+ };
+type PromotionPreviewItem = 
+ record {
+   admNo: text;
+   discountCount: nat;
+   fullName: text;
+   hasTransport: bool;
+   oldBalance: float64;
+   studentId: text;
+ };
+type PromotionClassBreakdown = 
+ record {
+   className: text;
+   failed: nat;
+   graduated: nat;
+   promoted: nat;
+ };
+type PromotionAllResult = 
+ record {
+   breakdown: vec PromotionClassBreakdown;
+   totalFailed: nat;
+   totalGraduated: nat;
+   totalPromoted: nat;
+ };
+type PromClassLevel = 
+ variant {
+   Class1;
+   Class10;
+   Class11;
+   Class12;
+   Class2;
+   Class3;
+   Class4;
+   Class5;
+   Class6;
+   Class7;
+   Class8;
+   Class9;
+   LKG;
+   PlayWay;
+   UKG;
+ };
+type PickupPointRow = 
+ record {
+   id: text;
+   monthlyFare: float64;
+   name: text;
+   order: nat;
+   routeId: text;
+   timing: text;
+ };
+type PickupPoint = 
+ record {
+   id: text;
+   monthlyFare: float64;
+   name: text;
+   order: nat;
+   routeId: text;
+   timing: text;
+ };
+type PeriodConfig = 
+ record {
+   durationMinutes: nat;
+   isInterval: bool;
+   periodNumber: nat;
+   startTime: text;
+ };
+type PayrollStatus = 
+ variant {
+   Paid;
+   Pending;
+ };
+type PayrollRow = 
+ record {
+   additions: nat;
+   basicSalary: nat;
+   deductions: nat;
+   generatedBy: text;
+   id: text;
+   month: text;
+   netSalary: nat;
+   paymentDate: opt text;
+   presentDays: nat;
+   staffId: text;
+   status: PayrollStatus;
+   totalDays: nat;
+   year: text;
+ };
+type PayrollRecord = 
+ record {
+   additions: nat;
+   basicSalary: nat;
+   deductions: nat;
+   generatedBy: text;
+   id: text;
+   month: text;
+   netSalary: nat;
+   paymentDate: opt text;
+   presentDays: nat;
+   staffId: text;
+   status: PayrollStatus;
+   totalDays: nat;
+   year: text;
+ };
+type PayrollMonthStatus = 
+ variant {
+   paid;
+   partial;
+   unpaid;
+ };
+type PayrollCalculation = 
+ record {
+   absentDays: nat;
+   biometricCount: nat;
+   faceCount: nat;
+   month: nat;
+   monthlySalary: nat;
+   netPay: nat;
+   presentDays: nat;
+   qrCount: nat;
+   rfidCount: nat;
+   staffId: text;
+   staffName: text;
+   workingDays: nat;
+   year: nat;
+ };
+type PaidLeaveConfig = 
+ record {
+   daysPerMonth: float64;
+   updatedAt: int;
+ };
+type OtherFeeRow = 
+ record {
+   amount: nat;
+   description: text;
+ };
+type OtherFee = 
+ record {
+   amount: nat;
+   description: text;
+ };
+type OnlineExamSubmission = 
+ record {
+   answers: vec record {
+                  text;
+                  nat;
+                };
+   examId: text;
+   id: text;
+   score: nat;
+   studentId: text;
+   submittedAt: int;
+   timeTakenSecs: nat;
+   totalMarks: nat;
+ };
+type OnlineExam = 
+ record {
+   classLevel: ClassLevel;
+   createdBy: text;
+   durationMinutes: nat;
+   endTime: opt text;
+   id: text;
+   isActive: bool;
+   questions: vec MCQQuestion;
+   startTime: opt text;
+   subjectId: opt text;
+   title: text;
+ };
+type NotificationRow = 
+ record {
+   createdAt: int;
+   createdBy: text;
+   id: text;
+   isRead: bool;
+   message: text;
+   notifType: text;
+   targetClassLevel: opt ClassLevel;
+   targetRole: opt text;
+   targetStudentId: opt text;
+   title: text;
+ };
+type Notification = 
+ record {
+   createdAt: int;
+   createdBy: text;
+   id: text;
+   isRead: bool;
+   message: text;
+   notifType: text;
+   targetClassLevel: opt ClassLevel;
+   targetRole: opt text;
+   targetStudentId: opt text;
+   title: text;
+ };
+type ModulePermission = 
+ record {
+   canCreate: bool;
+   canDelete: bool;
+   canEdit: bool;
+   canExport: bool;
+   canView: bool;
+   moduleId: text;
+ };
+type MCQQuestion = 
+ record {
+   correctOption: nat;
+   id: text;
+   marks: nat;
+   options: vec text;
+   question: text;
+ };
+type InventoryTxRow = 
+ record {
+   balanceAmount: nat;
+   buyerAdmNo: text;
+   buyerName: text;
+   createdBy: text;
+   date: text;
+   id: text;
+   itemId: text;
+   quantity: int;
+   receivedAmount: nat;
+   remarks: opt text;
+   sellerName: text;
+   totalAmount: nat;
+   transactionType: InvTxType;
+   unitPrice: nat;
+ };
+type InventoryTransaction = 
+ record {
+   balanceAmount: nat;
+   buyerAdmNo: text;
+   buyerName: text;
+   createdBy: text;
+   date: text;
+   id: text;
+   itemId: text;
+   quantity: int;
+   receivedAmount: nat;
+   remarks: opt text;
+   sellerName: text;
+   totalAmount: nat;
+   transactionType: InvTxType;
+   unitPrice: nat;
+ };
+type InventoryItemRow = 
+ record {
+   category: text;
+   currentStock: nat;
+   id: text;
+   minStock: nat;
+   name: text;
+   purchasePrice: nat;
+   salePrice: nat;
+   store: text;
+   unit: text;
+ };
+type InventoryItem = 
+ record {
+   category: text;
+   currentStock: nat;
+   id: text;
+   minStock: nat;
+   name: text;
+   purchasePrice: nat;
+   salePrice: nat;
+   store: text;
+   unit: text;
+ };
+type InvTxType = 
+ variant {
+   Adjustment;
+   Purchase;
+   Sale;
+ };
+type IndexPageSection = 
+ record {
+   bgColor: text;
+   description: text;
+   id: text;
+   imageFileId: text;
+   isVisible: bool;
+   order: nat;
+   sectionType: text;
+   textColor: text;
+   title: text;
+ };
+type IndexPageConfig = 
+ record {
+   ctaButtonColor: text;
+   ctaButtonText: text;
+   customLinks: vec CustomLink;
+   heroBgColor: text;
+   heroImageFileId: text;
+   heroSubtitle: text;
+   heroTextColor: text;
+   heroTitle: text;
+   isPublished: bool;
+   sections: vec IndexPageSection;
+ };
+type HomeworkSubmission = 
+ record {
+   attachmentUrl: opt text;
+   content: opt text;
+   feedback: opt text;
+   grade: opt text;
+   homeworkId: text;
+   id: text;
+   studentId: text;
+   submittedAt: int;
+ };
+type HomeworkEntry = 
+ record {
+   attachmentUrl: opt text;
+   classLevel: ClassLevel;
+   createdAt: int;
+   createdBy: text;
+   description: text;
+   dueDate: text;
+   id: text;
+   sectionId: opt text;
+   subjectId: text;
+   title: text;
+ };
+type Holiday = 
+ record {
+   createdAt: int;
+   date: text;
+   description: text;
+   id: text;
+   isRecurring: bool;
+   name: text;
+ };
+type GenerateTimetableParams = 
+ record {
+   classSections: vec record {
+                        ClassLevel;
+                        text;
+                      };
+   name: text;
+   periodConfigs: opt vec PeriodConfig;
+   periodEndTimes: vec text;
+   periodStartTimes: vec text;
+   periodsPerDay: nat;
+   sessionId: text;
+   workDays: vec text;
+ };
+type GenerateScheduleParams = 
+ record {
+   classSubjects: vec record {
+                        ClassLevel;
+                        vec text;
+                      };
+   endDate: text;
+   endTime: text;
+   examName: text;
+   participatingClasses: vec ClassLevel;
+   sessionId: text;
+   startDate: text;
+   startTime: text;
+ };
+type FullPayrollRecord = 
+ record {
+   basicSalary: float64;
+   createdAt: int;
+   dailyRate: float64;
+   daysAbsent: nat;
+   daysPresent: nat;
+   deductibleDays: nat;
+   deductionAmount: float64;
+   freeLeaves: nat;
+   id: text;
+   incentives: float64;
+   month: text;
+   netSalary: float64;
+   staffId: text;
+   staffName: text;
+   status: text;
+   updatedAt: int;
+   workingDays: nat;
+   year: text;
+ };
+type FeeRegisterEntry = 
+ record {
+   balance: nat;
+   className: text;
+   collectedBy: text;
+   discountTotal: nat;
+   id: text;
+   lateFees: nat;
+   months: vec text;
+   paymentDate: text;
+   paymentMode: text;
+   previousBalance: float64;
+   receiptNo: text;
+   sectionName: text;
+   sessionId: text;
+   studentId: text;
+   studentName: text;
+   totalAmount: nat;
+   totalDue: nat;
+ };
+type FeeRegisterBalanceEntry = 
+ record {
+   collectedBy: text;
+   id: text;
+   paymentDate: text;
+   previousBalance: float64;
+   receiptNo: text;
+   studentId: text;
+   totalAmount: nat;
+ };
+type FeePlanRow = 
+ record {
+   classLevel: ClassLevel;
+   id: text;
+   monthlyAmounts: vec record {
+                         text;
+                         nat;
+                       };
+   sectionId: opt text;
+   session: text;
+ };
+type FeePlan = 
+ record {
+   classLevel: ClassLevel;
+   id: text;
+   monthlyAmounts: vec record {
+                         text;
+                         nat;
+                       };
+   sectionId: opt text;
+   session: text;
+ };
+type FeePaymentUpdate = 
+ record {
+   paymentDate: opt text;
+   paymentMode: opt text;
+   totalAmount: opt float64;
+ };
+type FeePaymentSummary = 
+ record {
+   admNo: text;
+   amount: nat;
+   className: text;
+   paymentMode: text;
+   receiptNo: text;
+   receiverName: text;
+   studentName: text;
+ };
+type FeePaymentItemRow = 
+ record {
+   amount: nat;
+   headingId: text;
+   month: text;
+ };
+type FeePaymentItem = 
+ record {
+   amount: nat;
+   headingId: text;
+   month: text;
+ };
+type FeePaymentEntry = 
+ record {
+   collectedBy: text;
+   id: text;
+   isDeleted: bool;
+   paymentDate: text;
+   receiptNo: text;
+   studentId: text;
+   totalAmount: nat;
+ };
+type FeePayment = 
+ record {
+   balance: nat;
+   balanceCarriedForward: float64;
+   createdAt: int;
+   createdBy: text;
+   discountTotal: nat;
+   id: text;
+   isDeleted: bool;
+   items: vec FeePaymentItem;
+   lateFees: nat;
+   otherFee: opt OtherFee;
+   paymentDate: text;
+   paymentMode: text;
+   receiptNo: text;
+   remarks: opt text;
+   sessionId: text;
+   studentId: text;
+   totalAmount: nat;
+   totalDue: nat;
+   upiRef: opt text;
+ };
+type FeeHeadingRow = 
+ record {
+   applicableMonths: vec text;
+   description: opt text;
+   id: text;
+   isActive: bool;
+   name: text;
+ };
+type FeeHeading = 
+ record {
+   applicableMonths: vec text;
+   description: opt text;
+   id: text;
+   isActive: bool;
+   name: text;
+ };
+type FeeCollectionRow = 
+ record {
+   balance: nat;
+   balanceCarriedForward: float64;
+   createdAt: int;
+   createdBy: text;
+   discountTotal: nat;
+   id: text;
+   isDeleted: bool;
+   items: vec FeePaymentItemRow;
+   lateFees: nat;
+   otherFee: opt OtherFeeRow;
+   paymentDate: text;
+   paymentMode: text;
+   receiptNo: text;
+   remarks: opt text;
+   sessionId: text;
+   studentId: text;
+   totalAmount: nat;
+   totalDue: nat;
+   upiRef: opt text;
+ };
+type FeeAuditLog = 
+ record {
+   action: text;
+   adminId: text;
+   adminName: text;
+   fieldChanged: text;
+   id: text;
+   newValue: text;
+   oldValue: text;
+   paymentId: text;
+   studentId: text;
+   timestamp: int;
+ };
+type FaceEnrollmentRecord = 
+ record {
+   admNo: text;
+   descriptorJson: text;
+   enrolledBy: text;
+   faceEnrolled: bool;
+   faceEnrollmentDate: opt text;
+   photoUrl: opt text;
+   studentId: text;
+   updatedAt: int;
+ };
+type ExpenseStats = 
+ record {
+   balance: float64;
+   totalExpense: float64;
+   totalIncome: float64;
+ };
+type ExpenseHead__1 = 
+ record {
+   description: opt text;
+   headType: ExpHeadType;
+   id: text;
+   name: text;
+ };
+type ExpenseHead = 
+ record {
+   color: text;
+   createdAt: text;
+   id: text;
+   name: text;
+   "type": text;
+ };
+type ExpenseEntry__1 = 
+ record {
+   amount: nat;
+   createdAt: int;
+   createdBy: text;
+   date: text;
+   description: text;
+   headId: text;
+   id: text;
+   receipt: opt text;
+ };
+type ExpenseEntry = 
+ record {
+   amount: float64;
+   createdAt: text;
+   createdBy: text;
+   date: text;
+   description: text;
+   headId: text;
+   id: text;
+ };
+type ExpHeadType = 
+ variant {
+   Expense;
+   Income;
+ };
+type ExamTimetableRow = 
+ record {
+   classLevel: ClassLevel;
+   examName: text;
+   id: text;
+   schedule: vec ExamScheduleEntryRow;
+   session: text;
+ };
+type ExamTimetable = 
+ record {
+   classLevel: ClassLevel;
+   examName: text;
+   id: text;
+   schedule: vec ExamScheduleEntry;
+   session: text;
+ };
+type ExamSummary = 
+ record {
+   examConfigId: text;
+   examName: text;
+   overallGrade: text;
+   overallPassed: bool;
+   percentage: float64;
+   subjectMarks: vec SubjectMarkEntry;
+ };
+type ExamSubjectConfig = 
+ record {
+   maxMarks: float64;
+   passingMarks: float64;
+   subjectId: text;
+   subjectName: text;
+ };
+type ExamScheduleEntryRow = 
+ record {
+   date: text;
+   endTime: text;
+   invigilatorId: opt text;
+   room: opt text;
+   startTime: text;
+   subjectId: text;
+ };
+type ExamScheduleEntry = 
+ record {
+   date: text;
+   endTime: text;
+   invigilatorId: opt text;
+   room: opt text;
+   startTime: text;
+   subjectId: text;
+ };
+type ExamResultV2 = 
+ record {
+   classId: text;
+   examConfigId: text;
+   examName: text;
+   id: text;
+   overallGrade: text;
+   overallPassed: bool;
+   percentage: float64;
+   rank: opt nat;
+   remarks: opt text;
+   savedAt: int;
+   sessionId: text;
+   studentId: text;
+   subjectMarks: vec SubjectMarkEntry;
+   totalMax: float64;
+   totalObtained: float64;
+ };
+type ExamResult = 
+ record {
+   examTimetableId: text;
+   grade: text;
+   id: text;
+   percentage: float64;
+   rank: opt nat;
+   remarks: opt text;
+   scores: vec record {
+                 text;
+                 nat;
+               };
+   studentId: text;
+   totalMarks: nat;
+ };
+type ExamConfig = 
+ record {
+   classId: text;
+   createdAt: int;
+   examName: text;
+   id: text;
+   includeInCombined: bool;
+   sessionId: text;
+   subjectConfigs: vec ExamSubjectConfig;
+   weightage: float64;
+ };
+type ExamCalendarEntry = 
+ record {
+   className: text;
+   createdAt: int;
+   date: text;
+   examName: text;
+   id: text;
+ };
+type EnhancedPayrollRow = 
+ record {
+   absentDays: float64;
+   advancePaid: float64;
+   attendanceDays: float64;
+   deductibleDays: float64;
+   deductions: float64;
+   generatedAt: int;
+   grossSalary: float64;
+   id: text;
+   incentives: float64;
+   loanDeduction: float64;
+   month: text;
+   netSalary: float64;
+   paymentStatus: text;
+   payouts: vec StaffPayoutRow;
+   payslipNotes: text;
+   staffId: text;
+   workingDays: float64;
+ };
+type EnhancedPayrollRecord = 
+ record {
+   absentDays: float64;
+   advancePaid: float64;
+   attendanceDays: float64;
+   deductibleDays: float64;
+   deductions: float64;
+   generatedAt: int;
+   grossSalary: float64;
+   id: text;
+   incentives: float64;
+   loanDeduction: float64;
+   month: text;
+   netSalary: float64;
+   paymentStatus: text;
+   payouts: vec StaffPayout;
+   payslipNotes: text;
+   staffId: text;
+   workingDays: float64;
+ };
+type DirectMessage = 
+ record {
+   channel: text;
+   deliveryStatus: text;
+   fromUsername: text;
+   id: text;
+   message: text;
+   sentAt: text;
+   templateKey: opt text;
+   toClassLevel: opt text;
+   toSection: opt text;
+   toStudentId: opt text;
+ };
+type DeviceConfig = 
+ record {
+   deviceId: opt text;
+   deviceType: text;
+   ipAddress: opt text;
+   port: opt nat;
+   updatedAt: int;
+   usbPort: opt text;
+ };
+type DeviceAttendanceRecord = 
+ record {
+   classLevel: ClassLevel;
+   date: text;
+   deviceType: AttendanceDevice;
+   id: nat;
+   inTime: opt text;
+   outTime: opt text;
+   section: text;
+   status: text;
+   studentId: nat;
+   studentName: text;
+ };
+type DemandRegisterFilter = 
+ record {
+   classFilter: opt text;
+   headingIds: vec text;
+   months: vec text;
+   sectionFilter: opt text;
+   sessionId: text;
+ };
+type DemandRegisterEntry = 
+ record {
+   admNo: text;
+   className: text;
+   duesPerHeading: vec record {
+                         text;
+                         text;
+                         nat;
+                       };
+   fatherName: text;
+   months: vec text;
+   oldBalance: nat;
+   phone: text;
+   section: text;
+   studentId: text;
+   studentName: text;
+   totalDue: nat;
+ };
+type DashboardStatsV2 = 
+ record {
+   attendanceTodayPercent: opt float64;
+   feesCollectedThisMonth: nat;
+   feesCollectedThisYear: nat;
+   feesCollectedToday: nat;
+   feesCollectedTodayBreakdown: vec FeePaymentSummary;
+   pendingFeesTotal: nat;
+   recentActivity: vec ActivityEntry;
+   totalClasses: nat;
+   totalSections: nat;
+   totalStaff: nat;
+   totalStudents: nat;
+ };
+type DailySalesSummary = 
+ record {
+   date: text;
+   itemsSold: nat;
+   totalAmount: float64;
+   totalSales: nat;
+ };
+type CustomLink = 
+ record {
+   isExternal: bool;
+   linkLabel: text;
+   order: nat;
+   url: text;
+ };
+type ClassTimetableEntry = 
+ record {
+   classLevel: ClassLevel;
+   dayOfWeek: text;
+   endTime: text;
+   periodNumber: nat;
+   sectionName: text;
+   startTime: text;
+   subjectName: text;
+   teacherName: text;
+   teacherStaffId: text;
+ };
+type ClassTimetable = 
+ record {
+   createdAt: int;
+   entries: vec ClassTimetableEntry;
+   id: text;
+   name: text;
+   periodConfigs: opt vec PeriodConfig;
+   sessionId: text;
+   updatedAt: int;
+ };
+type ClassLinks = 
+ record {
+   broadcastUrl: text;
+   cctvUrl: text;
+   classLevel: text;
+   sectionName: text;
+ };
+type ClassLevelV = 
+ variant {
+   Class1;
+   Class10;
+   Class11;
+   Class12;
+   Class2;
+   Class3;
+   Class4;
+   Class5;
+   Class6;
+   Class7;
+   Class8;
+   Class9;
+   LKG;
+   PlayWay;
+   UKG;
+ };
+type ClassLevel = 
+ variant {
+   Class1;
+   Class10;
+   Class11;
+   Class12;
+   Class2;
+   Class3;
+   Class4;
+   Class5;
+   Class6;
+   Class7;
+   Class8;
+   Class9;
+   LKG;
+   PlayWay;
+   UKG;
+ };
+type ChatRoomType = 
+ variant {
+   ClassGroup;
+   Direct;
+   General;
+   RouteGroup;
+ };
+type ChatRoomRow = 
+ record {
+   createdAt: int;
+   createdBy: text;
+   id: text;
+   members: vec text;
+   name: text;
+   roomType: ChatRoomType;
+ };
+type ChatRoom = 
+ record {
+   createdAt: int;
+   createdBy: text;
+   id: text;
+   members: vec text;
+   name: text;
+   roomType: ChatRoomType;
+ };
+type ChatMessage = 
+ record {
+   attachmentUrl: opt text;
+   content: text;
+   id: text;
+   isDeleted: bool;
+   roomId: text;
+   senderId: text;
+   sentAt: int;
+ };
+type ChapterWithQA = 
+ record {
+   approvalStatus: text;
+   chapterId: text;
+   chapterNo: nat;
+   classLevel: text;
+   completionPercent: nat;
+   qas: vec QAPair;
+   subjectId: text;
+   title: text;
+   topics: vec text;
+   userProvidedQuestions: vec text;
+ };
+type CertificateTemplate__1 = 
+ record {
+   createdBy: text;
+   elementsJson: text;
+   id: text;
+   isDefault: bool;
+   name: text;
+   templateType: text;
+   thumbnail: text;
+   updatedAt: int;
+ };
+type CertificateTemplate = 
+ record {
+   createdBy: text;
+   id: text;
+   isDefault: bool;
+   layoutJson: text;
+   name: text;
+   templateType: text;
+   updatedAt: int;
+ };
+type CellCopyOp = 
+ record {
+   source: TimetableCellRef;
+   target: TimetableCellRef;
+ };
+type CalendarStats = 
+ record {
+   holidayCount: int;
+   sundayCount: int;
+   totalDaysFromApril1: int;
+   workingDays: int;
+ };
+type BusLocation = 
+ record {
+   busId: text;
+   driverName: text;
+   isActive: bool;
+   latitude: float64;
+   longitude: float64;
+   routeId: text;
+   routeName: text;
+   updatedAt: int;
+ };
+type BookRow = 
+ record {
+   author: text;
+   availableCopies: nat;
+   category: text;
+   id: text;
+   isbn: text;
+   photoUrl: opt text;
+   publisher: opt text;
+   shelfLocation: opt text;
+   title: text;
+   totalCopies: nat;
+ };
+type BookIssueStatus = 
+ variant {
+   Issued;
+   Overdue;
+   Returned;
+ };
+type BookIssueRow = 
+ record {
+   bookId: text;
+   dueDate: text;
+   fine: nat;
+   id: text;
+   issueDate: text;
+   returnDate: opt text;
+   status: BookIssueStatus;
+   studentId: text;
+ };
+type BookIssue = 
+ record {
+   bookId: text;
+   dueDate: text;
+   fine: nat;
+   id: text;
+   issueDate: text;
+   returnDate: opt text;
+   status: BookIssueStatus;
+   studentId: text;
+ };
+type Book = 
+ record {
+   author: text;
+   availableCopies: nat;
+   category: text;
+   id: text;
+   isbn: text;
+   photoUrl: opt text;
+   publisher: opt text;
+   shelfLocation: opt text;
+   title: text;
+   totalCopies: nat;
+ };
+type BackupSettings = 
+ record {
+   backupGmail: opt text;
+   backupSchedule: BackupSchedule;
+   lastBackupTimestamp: int;
+ };
+type BackupSchedule = 
+ variant {
+   daily;
+   monthly;
+   never;
+   weekly;
+ };
+type BackupPayload = 
+ record {
+   alumniRecords: vec AlumniRow;
+   appSettings: AppSettingsRow;
+   attendanceRecords: vec AttendanceRow;
+   backupTimestamp: int;
+   backupVersion: text;
+   chatRooms: vec ChatRoomRow;
+   classTimetables: vec ClassTimetable;
+   deviceAttendance: vec DeviceAttendanceRecord;
+   enhancedPayroll: vec EnhancedPayrollRow;
+   examTimetables: vec ExamTimetableRow;
+   expenseEntries: vec ExpenseEntry;
+   expenseHeads: vec ExpenseHead;
+   faceEnrollments: vec FaceEnrollmentRecord;
+   feeCollections: vec FeeCollectionRow;
+   feeHeadings: vec FeeHeadingRow;
+   feePlans: vec FeePlanRow;
+   inventoryItems: vec InventoryItemRow;
+   inventoryTx: vec InventoryTxRow;
+   libraryBooks: vec BookRow;
+   libraryIssues: vec BookIssueRow;
+   notifications: vec NotificationRow;
+   payrollRecords: vec PayrollRow;
+   pickupPoints: vec PickupPointRow;
+   routes: vec RouteRow;
+   schoolInfo: SchoolInfoRow;
+   sections: vec SectionRow;
+   sessions: vec SessionRow;
+   staff: vec StaffRow;
+   staffAttendance: vec StaffAttendanceRecord;
+   staffIncentives: vec StaffIncentiveRow;
+   staffLoans: vec StaffLoanRow;
+   staffPayouts: vec StaffPayoutRow;
+   studentDiscounts: vec StudentDiscountRow;
+   studentOldBalances: vec StudentOldBalanceRow;
+   students: vec StudentRow;
+   subjectAssignments: vec SubjectAssignment;
+   subjectClassMaps: vec SubjectClassMapRow;
+   subjects: vec SubjectRow;
+   syllabusChapters: vec SyllabusChapterRow;
+   syllabusContents: vec SyllabusContentRow;
+   userAccounts: vec UserAccountRow;
+ };
+type BackupError = 
+ record {
+   entityType: text;
+   reason: text;
+   recordId: text;
+ };
+type AuditLog = 
+ record {
+   action: text;
+   details: text;
+   id: text;
+   moduleName: text;
+   timestamp: int;
+   userId: text;
+ };
+type AttendanceSystemSettings = 
+ record {
+   essl: bool;
+   face: bool;
+   qr: bool;
+   rfid: bool;
+ };
+type AttendanceSummaryToday = 
+ record {
+   presentStaff: int;
+   presentStudents: int;
+   totalStaff: int;
+   totalStudents: int;
+ };
+type AttendanceStatus = 
+ variant {
+   Absent;
+   Late;
+   Leave;
+   Present;
+ };
+type AttendanceRow = 
+ record {
+   date: text;
+   id: text;
+   markedBy: text;
+   remarks: opt text;
+   status: AttendanceStatus;
+   studentId: text;
+ };
+type AttendanceRecord = 
+ record {
+   date: text;
+   id: text;
+   markedBy: text;
+   remarks: opt text;
+   status: AttendanceStatus;
+   studentId: text;
+ };
+type AttendanceDevice = 
+ variant {
+   ESSLBiometric;
+   Face;
+   QR;
+   RFID;
+ };
+type AttendanceBreakdownRow = 
+ record {
+   absentCount: nat;
+   classLevelText: text;
+   presentCount: nat;
+   sectionId: text;
+   sectionName: text;
+   totalCount: nat;
+ };
+type AppUser = 
+ record {
+   id: nat;
+   isActive: bool;
+   passwordHash: text;
+   role: UserRole;
+   username: text;
+ };
+type AppSettingsRow = 
+ record {
+   activeTheme: text;
+   dashboardBgUrl: opt text;
+   gpayEnabled: bool;
+   messageTemplates: vec record {
+                           text;
+                           text;
+                         };
+   payuEnabled: bool;
+   razorpayEnabled: bool;
+   upiId: opt text;
+   whatsappApiKey: opt text;
+   whatsappApiUrl: opt text;
+ };
+type AppSettings = 
+ record {
+   activeTheme: text;
+   dashboardBgUrl: opt text;
+   gpayEnabled: bool;
+   messageTemplates: vec record {
+                           text;
+                           text;
+                         };
+   payuEnabled: bool;
+   razorpayEnabled: bool;
+   upiId: opt text;
+   whatsappApiKey: opt text;
+   whatsappApiUrl: opt text;
+ };
+type AlumniRow = 
+ record {
+   className: text;
+   currentCity: opt text;
+   currentOccupation: opt text;
+   email: opt text;
+   fullName: text;
+   graduationYear: text;
+   id: text;
+   mobile: opt text;
+   photoUrl: opt text;
+ };
+type AlumniRecord = 
+ record {
+   className: text;
+   currentCity: opt text;
+   currentOccupation: opt text;
+   email: opt text;
+   fullName: text;
+   graduationYear: text;
+   id: text;
+   mobile: opt text;
+   photoUrl: opt text;
+ };
+type ActivityEntry = 
+ record {
+   actionType: text;
+   description: text;
+   timestamp: int;
+   userName: text;
+ };
+type AcademicSession = 
+ record {
+   createdAt: int;
+   endDate: text;
+   id: text;
+   isActive: bool;
+   isArchived: bool;
+   sessionName: text;
+   startDate: text;
+ };
+type AcademicPerformanceReport = 
+ record {
+   combinedGrade: text;
+   combinedPercentage: float64;
+   examSummaries: vec ExamSummary;
+   overallPassed: bool;
+   sessionId: text;
+   studentId: text;
+ };
+service : {
+  addAlumni: (fullName: text, graduationYear: text, className: text,
+   currentOccupation: opt text, currentCity: opt text, mobile: opt text,
+   email: opt text, photoUrl: opt text) -> (AlumniRecord);
+  addAuditLog: (userId: text, action: text, moduleName: text, details:
+   text) -> (AuditLog);
+  addBook: (isbn: text, title: text, author: text, publisher: opt text,
+   category: text, totalCopies: nat, shelfLocation: opt text, photoUrl:
+   opt text) -> (Book);
+  addChapterContent: (chapterId: text, contentText: text) -> ();
+  addExamDateToCalendar: (examName: text, date: text, className: text) ->
+   (ExamCalendarEntry);
+  addExpenseEntry: (headId: text, amount: nat, description: text, date: 
+   text, receipt: opt text, createdBy: text) -> (ExpenseEntry__1);
+  addExpenseEntryV2: (headId: text, amount: float64, date: text, description:
+   text, createdBy: text) -> (ExpenseEntry);
+  addExpenseHead: (name: text, headType: ExpHeadType, description:
+   opt text) -> (ExpenseHead__1);
+  addExpenseHeadV2: (name: text, "type": text, color: text) -> (ExpenseHead);
+  addFeeHeading: (name: text, description: opt text, applicableMonths:
+   vec text) -> (FeeHeading);
+  addHoliday: (name: text, date: text, description: text, isRecurring:
+   bool) -> (Holiday);
+  addHomework: (classLevel: ClassLevel, sectionId: opt text, subjectId: 
+   text, title: text, description: text, dueDate: text, createdBy: text,
+   attachmentUrl: opt text) -> (HomeworkEntry);
+  addItem: (name: text, category: text, store: text, unit: text,
+   currentStock: nat, minStock: nat, purchasePrice: nat, salePrice: nat) ->
+   (InventoryItem);
+  /// Add or update an incentive for payroll purposes (alias wiring payroll incentive).
+  addPayrollIncentive: (staffId: text, month: text, year: text, amount:
+   float64, reason: text) -> (bool);
+  addPickupPoint: (routeId: text, name: text, timing: text, monthlyFare:
+   float64, order: nat) -> (PickupPoint);
+  addResult: (studentId: text, examTimetableId: text, scores:
+   vec record {
+         text;
+         nat;
+       }, totalMarks: nat, percentage: float64, grade: text, rank: opt nat,
+   remarks: opt text) -> (ExamResult);
+  addRoute: (routeName: text, routeNo: text, busNo: text, driverName: 
+   text, driverMobile: text, capacity: nat) -> (TransportRoute);
+  addStaff: (employeeId: text, fullName: text, designation: text, department:
+   text, mobile: text, email: opt text, address: text, dateOfJoining: 
+   text, salary: nat, photoUrl: opt text, aadhaarNo: opt text, bankAccount:
+   opt text, ifscCode: opt text) -> (variant {
+                                       err: text;
+                                       ok: Staff;
+                                     });
+  addStaffIncentive: (staffId: text, amount: float64, reason: text, month:
+   text, approvedBy: text) -> (variant {
+                                 err: text;
+                                 ok: text;
+                               });
+  addStaffLoan: (staffId: text, principalAmount: float64, monthlyDeduction:
+   float64, startMonth: text, notes: text) -> (variant {
+                                                 err: text;
+                                                 ok: text;
+                                               });
+  addStaffPayout: (staffId: text, amount: float64, mode: text, date: 
+   text, notes: text, recordedBy: text) -> (variant {
+                                              err: text;
+                                              ok: text;
+                                            });
+  addStudent: (admNo: text, fullName: text, fatherName: text, motherName:
+   text, fatherMobile: text, motherMobile: opt text, dateOfBirth: text,
+   gender: text, currentAddress: text, permanentAddress: text, classLevel:
+   ClassLevel, sectionId: text, session: text, photoUrl: opt text,
+   bloodGroup: opt text, religion: opt text, category: opt text, aadhaarNo:
+   opt text, transportRouteId: opt text, transportPickupPointId: opt text,
+   busNo: opt text, mobile: opt text, srNo: opt text, penNo: opt text,
+   apaarNo: opt text, prevSchool: opt text, admissionDate: opt text) ->
+   (variant {
+      err: text;
+      ok: Student;
+    });
+  addSubjectAssignment: (staffId: text, subjectId: text, subjectName: 
+   text, minClass: opt text, maxClass: opt text, session: text) ->
+   (variant {
+      err: text;
+      ok: SubjectAssignment;
+    });
+  addTransaction: (itemId: text, transactionType: InvTxType, quantity: 
+   int, unitPrice: nat, totalAmount: nat, date: text, remarks: opt text,
+   createdBy: text, buyerAdmNo: opt text, buyerName: opt text, sellerName:
+   opt text, receivedAmount: opt nat, balanceAmount: opt nat) ->
+   (InventoryTransaction);
+  approveChapter: (chapterId: text) -> ();
+  approveChapterV2: (chapterId: text) -> ();
+  archiveSession: (id: text) -> ();
+  assignSubject: (teacherId: text, classLevel: ClassLevel, sectionId:
+   opt text, subjectId: text, session: text) -> (TeacherSubjectAssignment);
+  batchSaveClassTimetables: (timetables: vec ClassTimetable) -> (nat);
+  calculateAndSavePayroll: (staffId: text, month: nat, year: nat, baseSalary:
+   nat) -> (StaffPayrollRecord);
+  /// Calculates the enhanced payroll for a staff member for a specific month.
+  /// workingDays: total working days in that month (provided by caller / admin).
+  calculateEnhancedPayroll: (staffId: text, month: text, workingDays:
+   float64) -> (variant {
+                  err: text;
+                  ok: EnhancedPayrollRecord;
+                });
+  calculateGrade: (marksObtained: float64, maxMarks: float64) -> (text) query;
+  /// Calculate payroll for a staff member from attendance records.
+  /// workingDays is derived from calculateWorkingDays (session start–end excluding Sundays and holidays).
+  calculateStaffPayroll: (staffId: text, month: text, year: text, sessionId:
+   text) -> (variant {
+               err: text;
+               ok: FullPayrollRecord;
+             });
+  /// Count working days between two dates (inclusive), excluding Sundays and all stored holidays.
+  calculateWorkingDays: (_sessionId: text, fromDate: text, toDate: text) ->
+   (nat) query;
+  changePassword: (username: text, oldPassword: text, newPassword: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  checkPermission: (userId: text, moduleId: text, action: text) ->
+   (bool) query;
+  /// Admin confirms a payment by UTR number (for manual GPay / UPI bank transfers).
+  confirmPaymentByUtr: (studentId: text, utrNumber: text, amount: float64,
+   collectedBy: text) -> (variant {
+                            err: text;
+                            ok: text;
+                          });
+  copyPasteEntireDay: (sourceTimetableId: text, sourceDay: text,
+   targetTimetableId: text, targetDay: text) -> (bool);
+  copyPasteTimetableCells: (ops: vec CellCopyOp) -> (nat);
+  createChapter: (subjectId: text, chapterNo: nat, title: text, topics:
+   vec text, classLevel: text) -> (SyllabusChapter);
+  createChatRoom: (name: text, roomType: ChatRoomType, members: vec text,
+   createdBy: text) -> (ChatRoom);
+  createClassTimetable: (timetable: ClassTimetable) -> (ClassTimetable);
+  createExamTimetable: (examName: text, session: text, classLevel:
+   ClassLevel, schedule: vec ExamScheduleEntry) -> (ExamTimetable);
+  /// Returns a full snapshot of all stable storage as a BackupPayload.
+  /// The frontend downloads this as a JSON file for safekeeping.
+  createFullBackup: () -> (BackupPayload) query;
+  createNotification: (title: text, message: text, targetRole: opt text,
+   targetStudentId: opt text, targetClassLevel: opt ClassLevel, createdBy:
+   text, notifType: text) -> (Notification);
+  createOnlineExam: (title: text, classLevel: ClassLevel, subjectId:
+   opt text, durationMinutes: nat, questions: vec MCQQuestion, startTime:
+   opt text, endTime: opt text, createdBy: text) -> (OnlineExam);
+  createSection: (classLevel: ClassLevel, sectionName: text, roomNo:
+   opt text, teacherId: opt text) -> (variant {
+                                        err: text;
+                                        ok: Section;
+                                      });
+  createSession: (sessionName: text, startDate: text, endDate: text) ->
+   (AcademicSession);
+  createSmartExamTimetable: (timetable: SmartExamTimetable) -> (nat);
+  createSubject: (name: text, code: text, classLevel: ClassLevel, maxMarks:
+   nat, passingMarks: nat) -> (Subject);
+  createUser: (principalId: text, username: text, fullName: text, role: 
+   text, position: opt text, classLevel: opt ClassLevel, sectionId: opt text,
+   staffId: opt text, studentId: opt text, permissions: vec text) ->
+   (variant {
+      err: text;
+      ok: UserAccount;
+    });
+  deactivateStaff: (id: text) -> ();
+  /// Permanently delete ALL student records — admin-only destructive operation.
+  /// Clears the students map and all associated fee payments and attendance records.
+  deleteAllStudents: () -> ();
+  deleteAlumni: (id: text) -> ();
+  deleteBook: (id: text) -> ();
+  deleteCertificateTemplate: (id: text) -> ();
+  deleteChapter: (id: text) -> ();
+  deleteClassTimetable: (id: text) -> (bool);
+  deleteExamCalendarEntry: (id: text) -> ();
+  deleteExamConfig: (id: text) -> ();
+  deleteExamResult: (id: text) -> ();
+  deleteExamTimetable: (id: text) -> ();
+  deleteExpenseEntryV2: (id: text) -> (variant {
+                                         err: text;
+                                         ok: text;
+                                       });
+  deleteExpenseHeadV2: (id: text) -> (variant {
+                                        err: text;
+                                        ok: text;
+                                      });
+  deleteFeeHeading: (id: text) -> ();
+  deleteHoliday: (id: text) -> (bool);
+  deleteHomework: (id: text) -> ();
+  deleteItem: (id: text) -> ();
+  deletePayment: (id: text) -> ();
+  deletePickupPoint: (id: text) -> ();
+  deleteRoute: (id: text) -> ();
+  deleteSection: (id: text) -> (variant {
+                                  err: text;
+                                  ok: bool;
+                                });
+  deleteSmartExamTimetable: (id: nat) -> (bool);
+  deleteStaffIncentive: (incentiveId: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  deleteStaffPayout: (payoutId: text) -> (variant {
+                                            err: text;
+                                            ok: text;
+                                          });
+  /// Permanently delete a student record. Intended for admin use only.
+  /// Also removes associated fee payments and attendance records.
+  deleteStudent: (id: text) -> ();
+  deleteSubject: (id: text) -> ();
+  deleteSubjectAssignment: (id: text) -> (variant {
+                                            err: text;
+                                            ok: text;
+                                          });
+  discontinueStudent: (id: text) -> ();
+  enrollStudentFace: (studentId: text, admNo: text, enrolledBy: text,
+   photoUrl: opt text, descriptorJson: text, date: text) ->
+   (variant {
+      err: text;
+      ok: FaceEnrollmentRecord;
+    });
+  ensureClassGroupsExist: (classLevels: vec ClassLevelV, sectionNames:
+   vec text) -> (vec RoomRec);
+  ensureRouteGroupsExist: (routeList: vec record {
+                                            id: text;
+                                            name: text;
+                                          }) -> (vec RoomRec);
+  /// Factory reset — clears ALL data collections and re-seeds defaults.
+  /// School settings (name, address, logo) are preserved.
+  /// Admin-only: callers must pass the admin password as a guard.
+  factoryReset: (adminPassword: text) -> (variant {
+                                            err: text;
+                                            ok: text;
+                                          });
+  generateChapterQA: (chapterId: text, contentText: text, userQuestions:
+   vec text) -> (vec QAPair);
+  generateClassTimetable: (params: GenerateTimetableParams, assignments:
+   vec record {
+         text;
+         text;
+         opt text;
+         text;
+       }, staffData: vec record {
+                           text;
+                           text;
+                         }, subjectData: vec record {
+                                               text;
+                                               text;
+                                             }) -> (ClassTimetable);
+  generatePayroll: (staffId: text, month: text, year: text, basicSalary: 
+   nat, presentDays: nat, totalDays: nat, deductions: nat, additions: 
+   nat, generatedBy: text) -> (PayrollRecord);
+  generateQAFromContent: (contentText: text, userQuestions: vec text) ->
+   (vec QAPair) query;
+  generateSmartExamSchedule: (params: GenerateScheduleParams) ->
+   (vec SmartTimetableEntry) query;
+  generateTeacherTimetable: (sessionId: text) -> (vec TeacherTimetable);
+  /// Academic calendar stats for a session: total days, sundays, holidays, working days.
+  getAcademicCalendarStats: (sessionId: text) ->
+   (record {
+      holidays: nat;
+      sundays: nat;
+      totalDays: nat;
+      workingDays: nat;
+    }) query;
+  /// Migration type: old Student shape without the new optional fields.
+  getAcademicPerformanceReport: (studentId: text, sessionId: text) ->
+   (AcademicPerformanceReport) query;
+  getActiveSession: () -> (opt AcademicSession) query;
+  getAllDeviceConfigs: () -> (vec DeviceConfig) query;
+  getAllExamConfigs: (sessionId: text) -> (vec ExamConfig) query;
+  getAllFaceEnrollments: () -> (vec FaceEnrollmentRecord) query;
+  /// Return ALL fee payments for a session, sorted by paymentDate descending.
+  /// Powers the detailed fee register view (all collectors, all classes).
+  getAllFeePaymentsBySession: (sessionId: text) -> (vec FeePayment) query;
+  getAllPayroll: () -> (vec PayrollRecord) query;
+  getAllSubjectAssignments: () -> (vec SubjectAssignment) query;
+  /// Returns all multi-class assignment maps (for bulk loading in the UI).
+  getAllSubjectClassMaps: () -> (vec SubjectClassMap) query;
+  /// Returns all UPI payment submissions (any status) — for admin full view.
+  getAllUpiPayments: () -> (vec UpiPaymentSubmission) query;
+  getAllUsers: () -> (vec UserAccount) query;
+  getAlumni: () -> (vec AlumniRecord) query;
+  getAppUsers: () -> (vec AppUser) query;
+  getAssignmentsByClass: (classLevel: ClassLevel) ->
+   (vec TeacherSubjectAssignment) query;
+  getAssignmentsByTeacher: (teacherId: text) ->
+   (vec TeacherSubjectAssignment) query;
+  getAttendanceBreakdown: (date: text, session: text) ->
+   (vec AttendanceBreakdownRow) query;
+  getAttendanceByDate: (date: text, _sectionId: text) ->
+   (vec AttendanceRecord) query;
+  getAttendanceByStudent: (studentId: text) -> (vec AttendanceRecord) query;
+  getAttendanceSettings: () -> (AttendanceSystemSettings) query;
+  getAttendanceSummary: (_classLevel: ClassLevel, _sectionId: text, date:
+   text) -> (record {
+               absent: nat;
+               late: nat;
+               leave: nat;
+               present: nat;
+             }) query;
+  getAttendanceSummaryToday: (date: text, session: text) ->
+   (AttendanceSummaryToday) query;
+  getAuditLogs: (moduleName: opt text, limit: nat) -> (vec AuditLog) query;
+  /// Returns the auto-created credentials for a student or staff by entityId.
+  /// Pass "par_<studentId>" to get the parent credentials for a student.
+  getAutoCreatedCredentials: (entityId: text) ->
+   (opt record {
+          password: text;
+          role: text;
+          username: text;
+        }) query;
+  getBackupSettings: () -> (BackupSettings) query;
+  getBooks: () -> (vec Book) query;
+  getBusLocations: () -> (vec BusLocation) query;
+  getCalendarStats: () -> (CalendarStats) query;
+  getCertificateTemplateById: (id: text) ->
+   (opt CertificateTemplate__1) query;
+  getCertificateTemplates: () -> (vec CertificateTemplate__1) query;
+  getChapterApprovalStatus: (chapterId: text) ->
+   (record {
+      reason: opt text;
+      status: text;
+    }) query;
+  getChapterContent: (chapterId: text) -> (opt SyllabusContent) query;
+  getChapters: (subjectId: text) -> (vec SyllabusChapter) query;
+  getChatRooms: (memberId: opt text) -> (vec ChatRoom) query;
+  getClassLinks: (classLevelTag: opt text) -> (vec ClassLinks) query;
+  getClassTimetableById: (id: text) -> (opt ClassTimetable) query;
+  getClassTimetables: (sessionId: opt text) -> (vec ClassTimetable) query;
+  getCustomStudentColumns: () ->
+   (vec record {
+          columnLabel: text;
+          fieldType: text;
+          key: text;
+        }) query;
+  getDailyFeeBreakdown: (date: text, sessionId: text) ->
+   (vec FeePaymentSummary) query;
+  getDailySalesSummary: () -> (vec DailySalesSummary) query;
+  getDashboardStats: () ->
+   (record {
+      activeStudents: nat;
+      feesCollectedMonth: nat;
+      feesCollectedToday: nat;
+      totalStaff: nat;
+      totalStudents: nat;
+    }) query;
+  getDashboardStatsV2: (sessionId: text) -> (DashboardStatsV2) query;
+  getDemandRegister: (filter: DemandRegisterFilter) ->
+   (vec DemandRegisterEntry) query;
+  getDeviceAttendanceByDate: (date: text) ->
+   (vec DeviceAttendanceRecord) query;
+  getDeviceAttendanceByDateAndType: (date: text, deviceType: text) ->
+   (vec DeviceAttendanceRecord) query;
+  getDeviceAttendanceByStudent: (studentId: nat) ->
+   (vec DeviceAttendanceRecord) query;
+  getDeviceConfig: (deviceType: text) -> (opt DeviceConfig) query;
+  getDirectMessages: (limit: nat) -> (vec DirectMessage) query;
+  getDirectMessagesByRecipient: (toStudentId: text) ->
+   (vec DirectMessage) query;
+  /// Returns all discontinued students (across all sessions).
+  getDiscontinuedStudents: () -> (vec Student) query;
+  getEnhancedPayroll: (staffId: text, month: text) ->
+   (opt EnhancedPayrollRecord) query;
+  getEnhancedPayrollByMonth: (month: text) ->
+   (vec EnhancedPayrollRecord) query;
+  /// Returns the count of enrolled (active) students in a class for a session.
+  getEnrolledCountByClass: (cl: ClassLevel, sessionId: text) -> (nat) query;
+  /// Returns the count of enrolled (active) students in a section for a session.
+  getEnrolledCountBySection: (sectionId: text, sessionId: text) ->
+   (nat) query;
+  getEnrolledStudentIds: () -> (vec text) query;
+  getExamConfigs: (sessionId: text, classId: text) -> (vec ExamConfig) query;
+  getExamDatesForCalendar: () -> (vec ExamCalendarEntry) query;
+  getExamResultsByClass: (classId: text, sessionId: text, examConfigId:
+   text) -> (vec ExamResultV2) query;
+  getExamResultsByExam: (examConfigId: text) -> (vec ExamResultV2) query;
+  getExamResultsByStudent: (studentId: text, sessionId: text) ->
+   (vec ExamResultV2) query;
+  getExamSubmissions: (examId: text) -> (vec OnlineExamSubmission) query;
+  getExamTimetables: () -> (vec ExamTimetable) query;
+  getExpenseEntries: (headId: opt text) -> (vec ExpenseEntry__1) query;
+  getExpenseEntriesV2: (headId: opt text) -> (vec ExpenseEntry) query;
+  getExpenseHeads: () -> (vec ExpenseHead__1) query;
+  getExpenseHeadsV2: () -> (vec ExpenseHead) query;
+  getExpenseStats: () -> (ExpenseStats) query;
+  getFaceAttendanceByDate: (date: text) -> (vec FaceEnrollmentRecord) query;
+  getFaceEnrolledStudents: () -> (vec FaceEnrollmentRecord) query;
+  /// Return fee audit logs. Filter by studentId or paymentId (both optional).
+  getFeeAuditLogs: (studentIdFilter: opt text, paymentIdFilter: opt text) ->
+   (vec FeeAuditLog) query;
+  getFeeHeadings: () -> (vec FeeHeading) query;
+  getFeePaymentsByCollector: (collectorId: text) ->
+   (vec FeePaymentEntry) query;
+  /// Return all payments for a student across all sessions (for receipt history).
+  getFeePaymentsByStudent: (studentId: text) -> (vec FeePayment) query;
+  getFeePlan: (classLevel: ClassLevel, sectionId: opt text, session: 
+   text) -> (opt FeePlan) query;
+  getFeePlans: () -> (vec FeePlan) query;
+  /// Return all fee payments for a session enriched with student class/section data.
+  /// Used by the Fee Register detailed view.
+  getFeeRegisterBySession: (sessionId: text) -> (vec FeeRegisterEntry) query;
+  getFeeRegisterByUser: () -> (vec record {
+                                     text;
+                                     vec FeePaymentEntry;
+                                   }) query;
+  getFeeRegisterWithBalance: (sessionId: text) ->
+   (vec FeeRegisterBalanceEntry) query;
+  /// Returns all holidays. sessionId parameter is accepted for API consistency but
+  /// holidays are not session-scoped in this implementation.
+  getHolidays: (_sessionId: opt text) -> (vec Holiday) query;
+  getHomework: (classLevel: opt ClassLevel) -> (vec HomeworkEntry) query;
+  getIndexPageConfig: () -> (opt IndexPageConfig) query;
+  getIssuedBooks: () -> (vec BookIssue) query;
+  getItems: () -> (vec InventoryItem) query;
+  getLastReceiptNo: () -> (nat) query;
+  /// Returns legacy payroll records for a staff member.
+  getLegacyPayrollByStaff: (staffId: text) -> (vec PayrollRecord) query;
+  getMessageTemplates: () -> (vec record {
+                                    text;
+                                    text;
+                                  }) query;
+  getMessages: (roomId: text) -> (vec ChatMessage) query;
+  getNotifications: (targetRole: opt text, targetStudentId: opt text) ->
+   (vec Notification) query;
+  getOnlineExam: (id: text) -> (opt OnlineExam) query;
+  getOnlineExams: () -> (vec OnlineExam) query;
+  getOverdueBooks: () -> (vec BookIssue) query;
+  getPaidLeaveConfig: () -> (PaidLeaveConfig) query;
+  getPaymentsByDate: (date: text) -> (vec FeePayment) query;
+  getPaymentsByMonth: (month: text) -> (vec FeePayment) query;
+  getPaymentsByStudent: (studentId: text) -> (vec FeePayment) query;
+  getPaymentsByStudentAndSession: (studentId: text, sessionId: text) ->
+   (vec FeePayment) query;
+  getPayrollByMonth: (month: nat, year: nat) ->
+   (vec StaffPayrollRecord) query;
+  getPayrollByStaff: (staffId: text) -> (vec PayrollRecord) query;
+  getPayrollCalculation: (staffId: text, staffName: text, staffSalary: 
+   nat, month: nat, year: nat, workingDays: nat) ->
+   (PayrollCalculation) query;
+  getPayrollHistory: (staffId: text) -> (vec StaffPayrollRecord) query;
+  /// Returns all pending UPI payment submissions (for admin verification panel).
+  getPendingUpiPayments: () -> (vec UpiPaymentSubmission) query;
+  /// Returns all pickup points for a route, sorted by order.
+  getPickupPoints: (routeId: text) -> (vec PickupPoint) query;
+  /// Alias — same as getPickupPoints; provided for frontend clarity.
+  getPickupPointsByRoute: (routeId: text) -> (vec PickupPoint) query;
+  /// Return the student's old-balance from the session immediately prior to currentSession.
+  /// Looks up studentOldBalances for any entry whose sessionId != currentSession belonging
+  /// to this student; returns the most recently added one, or null if none.
+  /// Collect Fees uses this to auto-populate the previous-session-due field.
+  getPreviousSessionBalance: (studentId: text, currentSession: text) ->
+   (opt record {
+          amount: float64;
+          previousYearDue: float64;
+          sessionId: text;
+        }) query;
+  getPromotionPreview: (fromClass: PromClassLevel, fromSession: text) ->
+   (vec PromotionPreviewItem) query;
+  getPublishedChapters: (subjectId: text, classLevel: opt text) ->
+   (vec ChapterWithQA) query;
+  getPublishedChaptersForStudent: (classId: text, subjectId: text) ->
+   (vec ChapterWithQA) query;
+  getResultsByExam: (examTimetableId: text) -> (vec ExamResult) query;
+  getResultsByStudent: (studentId: text) -> (vec ExamResult) query;
+  getRolePermissions: () -> (vec RolePermissions) query;
+  getRoutes: () -> (vec TransportRoute) query;
+  getSchoolInfo: () -> (SchoolInfo) query;
+  /// Returns the school's UPI ID (stored in appSettings.upiId).
+  getSchoolUpiId: () -> (opt text) query;
+  getSchoolWideTimetable: (sessionId: opt text) ->
+   (vec record {
+          text;
+          ClassTimetable;
+        }) query;
+  getSections: () -> (vec Section) query;
+  getSectionsByClass: (cl: ClassLevel) -> (vec Section) query;
+  getSessions: () -> (vec AcademicSession) query;
+  getSettings: () -> (AppSettings) query;
+  getSmartExamTimetableById: (id: nat) -> (opt SmartExamTimetable) query;
+  getSmartExamTimetables: (sessionId: opt text) ->
+   (vec SmartExamTimetable) query;
+  getStaff: () -> (vec Staff) query;
+  getStaffAttendanceBreakdown: (date: text) -> (StaffAttBreakdown) query;
+  getStaffAttendanceByDate: (date: text) -> (vec StaffAttendanceRecord) query;
+  getStaffAttendanceByDateAndType: (date: text, deviceType: text) ->
+   (vec StaffAttendanceRecord) query;
+  getStaffAttendanceByMonth: (staffId: text, month: nat, year: nat) ->
+   (vec StaffAttendanceRecord) query;
+  getStaffAttendanceByStaff: (staffId: text) ->
+   (vec StaffAttendanceRecord) query;
+  getStaffById: (id: text) -> (opt Staff) query;
+  getStaffIncentives: (staffId: text) -> (vec StaffIncentive) query;
+  getStaffIncentivesByMonth: (staffId: text, month: text) ->
+   (vec StaffIncentive) query;
+  getStaffLoans: (staffId: text) -> (vec StaffLoan) query;
+  /// Returns month-by-month payment summary for a staff member.
+  /// netSalary is wrapped in ?Float — frontend hides amount for non-admin roles.
+  getStaffPaymentSummary: (staffId: text) ->
+   (vec StaffPaymentSummaryEntry) query;
+  getStaffPayouts: (staffId: text) -> (vec StaffPayout) query;
+  getStaffPayoutsByMonth: (staffId: text, month: text) ->
+   (vec StaffPayout) query;
+  getStaffSalary: (staffId: text) -> (opt float64) query;
+  getStaffYearEndSummary: (staffId: text, yearArg: text) ->
+   (StaffYearEndSummary) query;
+  /// Look up a student by admission number. Used by frontend to check duplicates before bulk import.
+  getStudentByAdmNo: (admNo: text) -> (opt Student) query;
+  getStudentById: (id: text) -> (opt Student) query;
+  getStudentCount: () -> (nat) query;
+  getStudentCustomData: (studentId: text) -> (vec record {
+                                                    text;
+                                                    text;
+                                                  }) query;
+  getStudentDiscounts: (studentId: text) -> (vec StudentDiscount) query;
+  getStudentFaceEnrollment: (studentId: text) ->
+   (opt FaceEnrollmentRecord) query;
+  getStudentFeeBalance: (studentId: text, sessionId: text) ->
+   (record {
+      oldBalance: float64;
+      previousYearDue: float64;
+    }) query;
+  getStudentFeeCollectionData: (studentId: text, sessionId: text) ->
+   (StudentFeeCollectionData) query;
+  /// Returns 0 until inventory per-student due tracking is wired.
+  getStudentInventoryDue: (_studentId: text) -> (nat) query;
+  getStudentOldBalance: (studentId: text, sessionId: text) ->
+   (opt StudentOldBalance) query;
+  getStudentOldBalances: (studentId: text) -> (vec StudentOldBalance) query;
+  /// Return the monthly transport fare for a student based on their assigned pickup point.
+  /// Returns 0 if no pickup point is assigned or the pickup point is not found.
+  getStudentTransportFare: (studentId: text) -> (float64) query;
+  getStudents: () -> (vec Student) query;
+  getStudentsByClass: (cl: ClassLevel) -> (vec Student) query;
+  /// Returns all active students in a class for a given session.
+  getStudentsByClassAndSession: (cl: ClassLevel, sessionId: text) ->
+   (vec Student) query;
+  getStudentsByFamily: (mobile: text) -> (vec Student) query;
+  /// Returns all active students assigned to a transport route for a session.
+  getStudentsByRoute: (routeId: text, sessionId: text) -> (vec Student) query;
+  /// Returns all active students on a route with their pickup point details joined.
+  /// Used for the route double-click page and fee collection (pickup point → monthly fare).
+  getStudentsWithPickupPointsByRoute: (routeId: text, sessionId: text) ->
+   (vec StudentWithPickupPoint) query;
+  getSubjectAssignments: (staffId: text) -> (vec SubjectAssignment) query;
+  /// Returns the multi-class assignment for a subject.
+  getSubjectClassMap: (subjectId: text) -> (opt SubjectClassMap) query;
+  /// Returns the assigned class levels for a single subject (by subject ID).
+  getSubjectClassMapById: (subjectId: text) -> (opt vec ClassLevel) query;
+  /// Returns all multi-class assignment maps — alias used by frontend bulk loader.
+  getSubjectClassMapRecord: () -> (vec SubjectClassMap) query;
+  getSubjects: () -> (vec Subject) query;
+  getSubjectsByClass: (cl: ClassLevel) -> (vec Subject) query;
+  getSubmissions: (homeworkId: text) -> (vec HomeworkSubmission) query;
+  getSyllabusContent: (chapterId: text) -> (opt SyllabusContent) query;
+  getTeacherTimetables: (sessionId: text) -> (vec TeacherTimetable) query;
+  getTemplates: () -> (vec CertificateTemplate) query;
+  getTemplatesByType: (templateType: text) -> (vec CertificateTemplate) query;
+  getTotalDueByStudentAndSession: (studentId: text, sessionId: text) ->
+   (record {
+      totalDue: nat;
+      totalFees: nat;
+      totalPaid: nat;
+    }) query;
+  getTransactions: (itemId: opt text) -> (vec InventoryTransaction) query;
+  getTransactionsByDate: (date: text) ->
+   (vec
+     record {
+       balanceAmount: nat;
+       buyerAdmNo: text;
+       buyerName: text;
+       createdBy: text;
+       date: text;
+       id: text;
+       itemId: text;
+       quantity: int;
+       receivedAmount: nat;
+       remarks: opt text;
+       sellerName: text;
+       totalAmount: nat;
+       transactionType: variant {
+                          Adjustment;
+                          Purchase;
+                          Sale;
+                        };
+       unitPrice: nat;
+     }) query;
+  getUnreadCount: (targetRole: opt text) -> (nat) query;
+  /// Returns all UPI payment submissions for a specific student.
+  getUpiPaymentsByStudent: (studentId: text) ->
+   (vec UpiPaymentSubmission) query;
+  getUser: (userId: text) -> (opt UserAccount) query;
+  getUserByPrincipal: (principalId: text) -> (opt UserAccount) query;
+  getUserPermissions: (userId: text) -> (vec ModulePermission) query;
+  getUsers: () -> (vec UserAccount) query;
+  getVirtualClasses: (classLevel: opt ClassLevel) -> (vec VirtualClass) query;
+  /// Records a GPay payment confirmation (called after frontend polls for status
+  /// or receives a callback). Marks the submission as confirmed.
+  handleGPayCallback: (transactionId: text, studentId: text, status: 
+   text, utrNo: text, amount: float64) -> (variant {
+                                             err: text;
+                                             ok: text;
+                                           });
+  /// Generates a UPI deep-link for GPay / any UPI app.
+  /// Returns: upi://pay?pa=UPIID&pn=SCHOOLNAME&am=AMOUNT&cu=INR&tn=FeePayment
+  initiateGPayPayment: (studentId: text, amount: float64, _mobileNo: 
+   text) -> (variant {
+               err: text;
+               ok: text;
+             }) query;
+  isFaceEnrolled: (studentId: text) -> (bool) query;
+  issueBook: (bookId: text, studentId: text, issueDate: text, dueDate:
+   text) -> (BookIssue);
+  lockPayrollMonth: (staffId: text, month: nat, year: nat) ->
+   (opt StaffPayrollRecord);
+  loginUser: (username: text, password: text) ->
+   (variant {
+      err: text;
+      ok: record {
+            role: text;
+            userId: nat;
+            username: text;
+          };
+    });
+  markAttendance: (classLevel: ClassLevel, sectionId: text, date: text,
+   markedBy: text, records:
+   vec record {
+         remarks: opt text;
+         status: AttendanceStatus;
+         studentId: text;
+       }) -> ();
+  markDeviceOut: (recordId: nat, outTime: text) -> (bool);
+  markFaceAttendance: (studentId: text, studentName: text, classLevel: 
+   text, section: text, date: text, time: text, confidence: float64) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  markNotificationRead: (id: text) -> ();
+  markStaffAttendanceOut: (recordId: nat, outTime: text) -> (bool);
+  promoteAllClasses: (fromSession: text, toSession: text) ->
+   (PromotionAllResult);
+  promoteBulkStudents: (fromClass: PromClassLevel, fromSession: text,
+   newSession: text, targetSection: opt text) -> (PromotionResult);
+  pushActivityEntry: (actionType: text, description: text, userName: 
+   text) -> ();
+  /// Update only the lastBackupTimestamp (called after a successful backup export).
+  recordBackupTimestamp: (timestampMs: int) -> ();
+  recordDeviceAttendance: (rec: DeviceAttendanceRecord) -> (nat);
+  /// Alias kept for backward compat — recordPayment is the canonical name.
+  /// Accepts `collectedBy` field name (same as createdBy internally).
+  recordFeePayment: (studentId: text, sessionId: text, paymentDate: text,
+   items: vec FeePaymentItem, otherFee: opt OtherFee, totalDue: nat,
+   totalAmount: nat, balance: nat, collectedBy: text, paymentMode: text,
+   upiRef: opt text, remarks: opt text, lateFees: nat, discountTotal: 
+   nat, balanceCarriedForward: float64) -> (FeePayment);
+  recordPayment: (studentId: text, sessionId: text, paymentDate: text, items:
+   vec FeePaymentItem, otherFee: opt OtherFee, totalDue: nat, totalAmount:
+   nat, paymentMode: text, upiRef: opt text, remarks: opt text, createdBy:
+   text, lateFees: opt nat, discountTotal: opt nat, balanceCarriedForward:
+   opt float64) -> (FeePayment);
+  recordPayrollPayout: (staffId: text, month: nat, year: nat, amount: 
+   nat, baseSalary: nat) -> (opt StaffPayrollRecord);
+  recordStaffAttendance: (staffId: text, staffName: text, date: text, month:
+   nat, year: nat, deviceType: text, inTime: text) -> (nat);
+  rejectChapter: (chapterId: text, reason: text) -> ();
+  rejectChapterV2: (chapterId: text, reason: text) -> ();
+  removeAssignment: (id: text) -> ();
+  removeStudentDiscount: (id: text) -> ();
+  resetUserPassword: (username: text, newPassword: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  resetUserPasswordAdmin: (adminUsername: text, targetUsername: text,
+   newPassword: text) -> (variant {
+                            err: text;
+                            ok;
+                          });
+  /// Merge-restores all entities from a backup payload.
+  /// Strategy: if ID exists → overwrite, if not → insert.  No data is deleted.
+  /// Validates required fields before each write; skips invalid records and
+  /// collects per-entity errors.  Continues even when one entity type fails.
+  restoreFromBackup: (payload: BackupPayload) -> (RestoreResult);
+  returnBook: (issueId: text, returnDate: text, fine: nat) -> ();
+  revokeFaceEnrollment: (studentId: text) -> (variant {
+                                                err: text;
+                                                ok: text;
+                                              });
+  revokeStudentFaceEnrollment: (studentId: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  saveAttendanceSettings: (settings: AttendanceSystemSettings) -> ();
+  saveBackupSettings: (settings: BackupSettings) -> ();
+  saveCertificateTemplate: (id: text, name: text, templateType: text,
+   elementsJson: text, thumbnail: text, isDefault: bool, createdBy: text) ->
+   (CertificateTemplate__1);
+  saveChapterQA: (chapterId: text, qas: vec QAPair, userQuestions:
+   vec text) -> ();
+  saveClassLinks: (links: vec ClassLinks) -> (nat);
+  saveCustomStudentColumns: (columns:
+   vec record {
+         columnLabel: text;
+         fieldType: text;
+         key: text;
+       }) -> ();
+  saveDeviceConfig: (deviceType: text, config:
+   record {
+     deviceId: opt text;
+     ipAddress: opt text;
+     port: opt nat;
+     usbPort: opt text;
+   }) -> ();
+  saveExamConfig: (examName: text, sessionId: text, classId: text,
+   subjectConfigs: vec ExamSubjectConfig, includeInCombined: bool, weightage:
+   float64) -> (ExamConfig);
+  saveExamMarks: (examConfigId: text, sessionId: text, classId: text,
+   studentId: text, rawMarks:
+   vec
+    record {
+      marksObtained: float64;
+      maxMarks: float64;
+      passingMarks: float64;
+      subjectId: text;
+      subjectName: text;
+    }, rank: opt nat, remarks: opt text) ->
+   (variant {
+      err: text;
+      ok: ExamResultV2;
+    });
+  saveIndexPageConfig: (config: IndexPageConfig) -> ();
+  /// Save (persist) a full payroll record to stable storage.
+  savePayrollRecord: (staffId: text, staffName: text, month: text, year:
+   text, basicSalary: float64, workingDays: nat, daysPresent: nat,
+   incentives: float64, status: text) -> (bool);
+  saveTeacherTimetables: (timetables: vec TeacherTimetable) -> (nat);
+  saveTemplate: (templateType: text, name: text, layoutJson: text, createdBy:
+   text) -> (CertificateTemplate);
+  scheduleVirtualClass: (title: text, classLevel: ClassLevel, subjectId:
+   opt text, platform: VirtualPlatform, meetingLink: text, scheduledAt: 
+   text, durationMinutes: nat, createdBy: text) -> (VirtualClass);
+  sendDirectMessage: (msg: DirectMessage) -> (DirectMessage);
+  sendMessage: (roomId: text, senderId: text, content: text, attachmentUrl:
+   opt text) -> (ChatMessage);
+  setActiveSession: (id: text) -> ();
+  setAppUserActive: (username: text, isActive: bool) -> (bool);
+  setBusActive: (busId: text, isActive: bool) -> ();
+  setChapterClassLevel: (chapterId: text, classLevel: text) -> ();
+  setDefaultCertificateTemplate: (id: text) -> ();
+  setDefaultTemplate: (id: text) -> ();
+  setFeePlan: (classLevel: ClassLevel, sectionId: opt text, session: 
+   text, monthlyAmounts: vec record {
+                               text;
+                               nat;
+                             }) -> (FeePlan);
+  setPaidLeaveConfig: (daysPerMonth: float64) -> (PaidLeaveConfig);
+  /// Sets the school's UPI ID (convenience wrapper around updateSettings).
+  setSchoolUpiId: (upiId: text) -> ();
+  setStudentDiscount: (studentId: text, headingId: text, amount: nat, remark:
+   opt text) -> (StudentDiscount);
+  setStudentOldBalance: (studentId: text, sessionId: text, amount: float64,
+   previousYearDue: opt float64) -> (StudentOldBalance);
+  submitChapterForApproval: (chapterId: text) -> ();
+  submitChapterForApprovalV2: (chapterId: text) -> ();
+  submitExam: (examId: text, studentId: text, answers:
+   vec record {
+         text;
+         nat;
+       }, timeTakenSecs: nat) -> (OnlineExamSubmission);
+  submitHomework: (homeworkId: text, studentId: text, content: opt text,
+   attachmentUrl: opt text) -> (HomeworkSubmission);
+  /// Student or parent submits a UPI payment with UTR for admin verification.
+  submitUpiPayment: (studentId: text, amount: nat, utrNumber: text,
+   submittedAt: text) -> (variant {
+                            err: text;
+                            ok: text;
+                          });
+  updateAlumni: (id: text, fullName: text, graduationYear: text, className:
+   text, currentOccupation: opt text, currentCity: opt text, mobile:
+   opt text, email: opt text, photoUrl: opt text) -> ();
+  updateBook: (id: text, isbn: text, title: text, author: text, publisher:
+   opt text, category: text, totalCopies: nat, shelfLocation: opt text,
+   photoUrl: opt text) -> ();
+  updateBusLocation: (busId: text, routeId: text, latitude: float64,
+   longitude: float64) -> ();
+  updateChapterProgress: (id: text, completionPercent: nat) -> ();
+  updateClassTimetable: (id: text, timetable: ClassTimetable) -> (bool);
+  updateExamTimetable: (id: text, examName: text, session: text, classLevel:
+   ClassLevel, schedule: vec ExamScheduleEntry) -> ();
+  updateExpenseEntryV2: (id: text, headId: text, amount: float64, date: 
+   text, description: text) -> (variant {
+                                  err: text;
+                                  ok: text;
+                                });
+  updateExpenseHead: (id: text, name: text, headType: ExpHeadType,
+   description: opt text) -> ();
+  updateExpenseHeadV2: (id: text, name: text, "type": text, color: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  updateFeeHeading: (id: text, name: text, description: opt text, isActive:
+   bool, applicableMonths: vec text) -> ();
+  /// Update editable fields on a fee payment and create an audit log entry for each changed field.
+  updateFeePayment: (id: text, update: FeePaymentUpdate, adminId: text,
+   adminName: text) -> (bool);
+  updateHoliday: (id: text, name: text, date: text, description: text,
+   isRecurring: bool) -> (bool);
+  updateHomework: (id: text, title: text, description: text, dueDate: 
+   text, attachmentUrl: opt text) -> ();
+  updateItem: (id: text, name: text, category: text, store: text, unit: 
+   text, currentStock: nat, minStock: nat, purchasePrice: nat, salePrice:
+   nat) -> ();
+  updateLoanRepayment: (loanId: text, amountPaid: float64) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  updateMessageDeliveryStatus: (id: text, status: text) -> (bool);
+  updateMessageTemplate: (key: text, template: text) -> ();
+  updateOnlineExam: (id: text, title: text, classLevel: ClassLevel,
+   subjectId: opt text, durationMinutes: nat, questions: vec MCQQuestion,
+   startTime: opt text, endTime: opt text, isActive: bool) -> ();
+  updatePayment: (id: text, paymentDate: text, items: vec FeePaymentItem,
+   otherFee: opt OtherFee, totalAmount: nat, paymentMode: text, upiRef:
+   opt text, remarks: opt text) -> ();
+  updatePayrollStatus: (id: text, status: PayrollStatus, paymentDate:
+   opt text) -> ();
+  updatePermissions: (id: text, permissions: vec text) -> ();
+  updatePickupPoint: (id: text, name: text, timing: text, monthlyFare:
+   float64, order: nat) -> ();
+  updateResult: (id: text, scores: vec record {
+                                         text;
+                                         nat;
+                                       }, totalMarks: nat, percentage:
+   float64, grade: text, rank: opt nat, remarks: opt text) -> ();
+  updateRolePermissions: (role: UserRole, permissions:
+   vec ModulePermission) -> ();
+  updateRoute: (id: text, routeName: text, routeNo: text, busNo: text,
+   driverName: text, driverMobile: text, capacity: nat) -> ();
+  updateSchoolInfo: (info: SchoolInfo) -> ();
+  updateSection: (id: text, classLevel: ClassLevel, sectionName: text,
+   roomNo: opt text, teacherId: opt text) -> ();
+  updateSettings: (s: AppSettings) -> ();
+  updateSmartExamTimetable: (id: nat, timetable: SmartExamTimetable) ->
+   (bool);
+  updateStaff: (id: text, employeeId: text, fullName: text, designation:
+   text, department: text, mobile: text, email: opt text, address: text,
+   dateOfJoining: text, salary: nat, photoUrl: opt text, aadhaarNo: opt text,
+   bankAccount: opt text, ifscCode: opt text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  updateStaffSalary: (staffId: text, basicSalary: nat) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  updateStudent: (id: text, admNo: text, fullName: text, fatherName: 
+   text, motherName: text, fatherMobile: text, motherMobile: opt text,
+   dateOfBirth: text, gender: text, currentAddress: text, permanentAddress:
+   text, classLevel: ClassLevel, sectionId: text, session: text, photoUrl:
+   opt text, bloodGroup: opt text, religion: opt text, category: opt text,
+   aadhaarNo: opt text, transportRouteId: opt text, transportPickupPointId:
+   opt text, busNo: opt text, mobile: opt text, srNo: opt text, penNo:
+   opt text, apaarNo: opt text, prevSchool: opt text, admissionDate:
+   opt text) -> ();
+  updateStudentCustomData: (studentId: text, customData:
+   vec record {
+         text;
+         text;
+       }) -> ();
+  updateSubject: (id: text, name: text, code: text, classLevel: ClassLevel,
+   maxMarks: nat, passingMarks: nat) -> ();
+  updateSubjectAssignment: (id: text, subjectId: text, subjectName: text,
+   minClass: opt text, maxClass: opt text, session: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  /// Update the list of classes this subject is assigned to (multi-class assignment).
+  updateSubjectClasses: (id: text, classLevels: vec ClassLevel) ->
+   (opt SubjectClassMap);
+  updateUser: (id: text, username: text, fullName: text, role: text,
+   position: opt text, classLevel: opt ClassLevel, sectionId: opt text,
+   staffId: opt text, studentId: opt text, isActive: bool) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  updateVirtualClass: (id: text, title: text, scheduledAt: text, meetingLink:
+   text, durationMinutes: nat, isCompleted: bool) -> ();
+  upsertAppUser: (username: text, password: text, role: text, isActive:
+   bool) -> (nat);
+  /// Admin verifies a UPI payment and records it as a fee payment.
+  verifyUpiPayment: (utrNumber: text, verifiedBy: text, verifiedAt: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+}

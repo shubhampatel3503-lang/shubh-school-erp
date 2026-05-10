@@ -1,0 +1,25 @@
+{
+  "overview": "SHUBH SCHOOL ERP is a comprehensive school management system for Indian schools built on the Internet Computer. It covers student and staff management, fees collection, attendance (face, RFID, ESSL, QR), exam results, timetables, HR & payroll, transport, library, inventory, syllabus, and communication — all in one platform with Indian conventions (INR, Play Way–Class 12, YYYY-YY sessions).",
+  "features": [
+    "Fee receipt and all printable certificates designed in Certificate Studio (drag-and-drop, user-editable)",
+    "Demand register with correct month-wise fee calculation per heading",
+    "Admit Card, Student ID, Staff ID, Bonafide, TC — all printable with editable templates",
+    "Collect Fees with old balance + previous session due auto-added",
+    "Backup and restore with Gmail and scheduled auto-backup",
+    "Attendance system selector in Settings (Face, RFID, ESSL, QR)",
+    "Advanced face attendance with continuous auto-recognition at 500ms intervals",
+    "Printable timetables (class-wise, teacher-wise, school-wide) in A4 format"
+  ],
+  "category": "education",
+  "tags": [
+    "school-erp",
+    "fees-management",
+    "attendance",
+    "timetable",
+    "certificates",
+    "indian-schools",
+    "face-recognition",
+    "backup"
+  ],
+  "last_updated": "2026-05-10T02:18:04.491Z"
+}

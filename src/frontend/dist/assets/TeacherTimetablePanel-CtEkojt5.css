@@ -1,0 +1,207 @@
+/* ─── Timetable Print Styles ──────────────────────────────────────────────── */
+/* Only activates during window.print() — invisible in normal browser view.   */
+
+@media print {
+  /* Hide everything on the page */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Show only the active print area */
+  .timetable-print-area,
+  .timetable-print-area * {
+    visibility: visible;
+  }
+
+  /* Override sr-only/hidden to show print area */
+  .timetable-print-area.sr-only {
+    position: fixed !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+  }
+
+  /* Position the print area to cover the full page */
+  .timetable-print-area {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: auto;
+    z-index: 99999;
+    background: #fff;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+  }
+
+  @page {
+    size: A4 landscape;
+    margin: 10mm 12mm;
+  }
+
+  /* ── School letterhead ─────────────────────────────────────────────────── */
+  .print-letterhead {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 2px solid #222;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+  }
+
+  .print-school-name {
+    font-size: 18pt;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: 0.02em;
+  }
+
+  .print-report-title {
+    font-size: 11pt;
+    font-weight: 600;
+    color: #333;
+    margin-top: 2px;
+  }
+
+  .print-session-badge {
+    font-size: 9pt;
+    color: #555;
+    margin-top: 1px;
+  }
+
+  /* ── Table ─────────────────────────────────────────────────────────────── */
+  .print-timetable-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 8pt;
+    table-layout: auto;
+  }
+
+  .print-timetable-table th {
+    background: #f0f0f0 !important;
+    color: #111 !important;
+    border: 1px solid #888 !important;
+    padding: 5px 6px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 8pt;
+    white-space: nowrap;
+  }
+
+  .print-timetable-table th.row-header {
+    text-align: left;
+    min-width: 90px;
+    background: #e8e8e8 !important;
+  }
+
+  .print-timetable-table td {
+    border: 1px solid #aaa !important;
+    padding: 4px 5px;
+    vertical-align: top;
+    font-size: 7.5pt;
+    line-height: 1.35;
+    min-width: 80px;
+  }
+
+  .print-timetable-table td.period-cell {
+    background: #f7f7f7 !important;
+    font-weight: 600;
+    white-space: nowrap;
+    min-width: 72px;
+  }
+
+  .print-timetable-table td.interval-cell {
+    background: #ececec !important;
+    color: #777 !important;
+    text-align: center;
+    font-style: italic;
+    font-size: 7pt;
+  }
+
+  /* Current period gets a light shade in print too */
+  .print-timetable-table tr.current-period td {
+    background: #e6f4ea !important;
+  }
+  .print-timetable-table tr.current-period td.period-cell {
+    background: #c8e6c9 !important;
+    font-weight: 700;
+  }
+
+  /* ── Cell content ──────────────────────────────────────────────────────── */
+  .print-cell-subject {
+    font-weight: 600;
+    font-size: 7.5pt;
+    color: #111;
+  }
+
+  .print-cell-teacher {
+    font-size: 7pt;
+    color: #444;
+    margin-top: 1px;
+  }
+
+  .print-cell-empty {
+    color: #bbb;
+    font-size: 7pt;
+  }
+
+  /* ── Signature footer ──────────────────────────────────────────────────── */
+  .print-footer {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    font-size: 8pt;
+    color: #333;
+  }
+
+  .print-signature-block {
+    text-align: center;
+    min-width: 160px;
+  }
+
+  .print-signature-line {
+    border-top: 1px solid #555;
+    margin-bottom: 3px;
+    height: 28px;
+  }
+
+  .print-signature-label {
+    font-size: 8pt;
+    color: #444;
+  }
+
+  .print-summary-info {
+    font-size: 7.5pt;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* ── School-wide day header ────────────────────────────────────────────── */
+  .print-day-header {
+    background: #e0e0e0 !important;
+    font-weight: 700;
+    font-size: 9pt;
+    padding: 4px 6px;
+    margin-top: 10px;
+    border: 1px solid #888;
+    border-bottom: none;
+  }
+
+  /* ── Teacher summary line ──────────────────────────────────────────────── */
+  .print-teacher-summary {
+    font-size: 8pt;
+    color: #444;
+    margin-top: 8px;
+    padding: 4px 6px;
+    background: #f5f5f5 !important;
+    border: 1px solid #ddd;
+    border-top: none;
+  }
+}
